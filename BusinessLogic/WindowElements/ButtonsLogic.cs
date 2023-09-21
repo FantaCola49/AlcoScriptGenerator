@@ -10,9 +10,12 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         /// <summary>
         /// Пояснение к Типу Скрипта
         /// </summary>
-        public void QScriptType(string Title, string Desc)
+        public void QScriptType(string title, string desc)
         {
-            MessageBox.Show($"{Title} - {Desc}",
+            var item = CheckInput(title, desc);
+            title = item.Item1 as string;
+            desc = item.Item2 as string;
+            MessageBox.Show($"{title} - {desc}",
                 "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -20,10 +23,13 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         /// Пояснение для скрипта
         /// </summary>
         /// <param name="scriptNum"></param>
-        public void QScript(string Title, string Desc)
+        public void QScript(string title, string desc)
         {
+            var item = CheckInput(title, desc);
+            title = item.Item1 as string;
+            desc = item.Item2 as string;
             // объяснение для каждого скрипта
-            MessageBox.Show($"{Title} - {Desc}",
+            MessageBox.Show($"{title} - {desc}",
                 "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -47,5 +53,23 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
         //TODO:Экспорт скрипта btn
         #endregion
+
+        /// <summary>
+        /// Кортеж для проверки значений
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="desc"></param>
+        /// <returns></returns>
+        private (string, string) CheckInput(string title, string desc)
+        {
+            if (string.IsNullOrEmpty(title) ||
+                string.IsNullOrEmpty(desc))
+            {
+                title = "Выберите скрипт";
+                desc = string.Empty;
+                return (title, desc);
+            }
+            return (title, desc);
+        }
     }
 }

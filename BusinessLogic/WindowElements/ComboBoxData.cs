@@ -40,18 +40,21 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 Title = "Агроспот",
                 Description = "Комплексы Агроспот. GPS, ReplyId",
                 Id = 1,
+                TypeOfScript = ScriptType.Agrospot,
             },
             new TypeScriptListMember
             {
                 Id = 2,
                 Title = "Заводы",
                 Description = "Комплексы АСИИУ Алкоспот, установленные на заводах. Дискреты, продукты и т.д.",
+                TypeOfScript = ScriptType.Zavod,
             },
             new TypeScriptListMember
             {
                 Id = 2,
                 Title = "Аскп",
                 Description = "Напрямую связана с сайтом АСКП. История контроллеров, продукты контроллеров, добавление сессии Агроспотов",
+                TypeOfScript = ScriptType.ASKP,
             },
         };
 
@@ -64,6 +67,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.Agrospot,
+                Body = string.Empty,
                 // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
             },
             new Script
@@ -73,6 +77,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 Description = "Выгрузка сессий агроспота",
                 СontainsArguments = false,
                 TypeOfScript = ScriptType.Agrospot,
+                Body = string.Empty,
             },
             new Script
             {
@@ -81,6 +86,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 Description = "Выгрузка суточных, и их ReplyId (Тикеты)",
                 СontainsArguments = false,
                 TypeOfScript = ScriptType.Agrospot,
+                Body = string.Empty,
             },
             new Script
             {
@@ -89,6 +95,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 Description = "Удаление GPS navigation. Необходим в случае ошибки типа XML(0,0) в логах службы отчётности",
                 СontainsArguments = true, //название пятиминутки
                 TypeOfScript = ScriptType.Agrospot,
+                Body = string.Empty,
             },
         };
 

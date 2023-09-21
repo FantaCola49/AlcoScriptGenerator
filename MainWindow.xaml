@@ -72,8 +72,8 @@
                 <RowDefinition Height="0.15*"/>
             </Grid.RowDefinitions>
             
-            <ComboBox Name="ScriptType" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="4"/>
-            <ComboBox Name="ScriptName" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="4"/>
+            <ComboBox Name="ScriptTypeCB" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="4" SelectionChanged="ScriptType_SelectionChanged"/>
+            <ComboBox Name="ScriptNameCB" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button Name="QScriptType" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="1" Click="QScriptType_Click">?</Button>
             <Button Name="QScriptName" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="3" Click="QScriptName_Click">?</Button>
             <TextBlock Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" Text="Тип скрипта" Grid.Row="1" Grid.Column="1"/>

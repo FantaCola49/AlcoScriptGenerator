@@ -3,20 +3,28 @@
     /// <summary>
     /// Сущность скрипта
     /// </summary>
-    public class Script : BaseEntity
+    public class Script : TypeScriptListMember
     {
         /// <summary>
-        /// Название
-        /// </summary>
-        public string Title { get; set; }
-        /// <summary>
-        /// Описание
-        /// </summary>
-        public string Description { get; set; }
-        /// <summary>
-        /// Тело
+        /// Тело скрипта
         /// </summary>
         public string Body { get; set; }
 
+        /// <summary>
+        /// Содержит аргументы для внесения?
+        /// </summary>
+        public bool СontainsArguments { get; set; }
+
+    }
+
+    /// <summary>
+    /// Все типы скриптов
+    /// </summary>
+    public enum ScriptType
+    {
+        Other,
+        Agrospot,
+        ASKP,
+        Zavod,
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using AlcoScriptGenerator.BusinessLogic.WindowElements;
+using ScriptType = AlcoScriptGenerator.BusinessLogic.Entities.ScriptType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,23 +33,32 @@ namespace AlcoScriptGenerator
         {
             InitializeComponent();
             btn = new ButtonsLogic();
-            FillCountriesComboBox();
+            // Заполняем ниспадающий список типов скриптов
+            FillTypeScriptsComboBox();
+            // Заполняем ниспадающий список скриптов
+            FillScriptsComboBox(ScriptType.Agrospot);
         }
 
         /// <summary>
-        /// ? Тип скрипта
+        /// Пояснение типа скрипта
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void QScriptType_Click(object sender, RoutedEventArgs e)
         {
-            var item = (TypeScriptListMember)ScriptType.SelectedItem;
+            var item = (TypeScriptListMember)ScriptTypeCB.SelectedItem;
             btn.QScriptType(item.Title, item.Description);
         }
-
+        
+        /// <summary>
+        /// Пояснение скрипта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QScriptName_Click(object sender, RoutedEventArgs e)
         {
-
+            var item = (Script)ScriptNameCB.SelectedItem;
+            btn.QScript(item.Title, item.Description);
         }
 
         /// <summary>
@@ -64,14 +74,44 @@ namespace AlcoScriptGenerator
         /// <summary>
         /// Подготовит выпадающий список типов скриптов
         /// </summary>
-        /// <remarks>По дефолту только Росиия</remarks>
-        private void FillCountriesComboBox()
+        private void FillTypeScriptsComboBox()
         {
             IComboBoxData data = new ComboBoxData();
             var scriptTypes = data.GetScriptTypes();
-            ScriptType.ItemsSource = scriptTypes;
-            ScriptType.DisplayMemberPath = "Title";
-            ScriptType.SelectedItem = scriptTypes[0];
+            ScriptTypeCB.ItemsSource = scriptTypes;
+            ScriptTypeCB.DisplayMemberPath = "Title";
+            // Агроспоты
+            ScriptTypeCB.SelectedItem = scriptTypes[0];
+        }
+
+        /// <summary>
+        /// Подготовит выпадающий список скриптов для агроспотов
+        /// </summary>
+        private void FillScriptsComboBox(ScriptType type)
+        {
+            IComboBoxData data = new ComboBoxData();
+            List<Script> scripts = new List<Script>();
+
+            if (type is ScriptType.Agrospot)
+                scripts = data.GetAgrospotScripts();
+
+            else if (type is ScriptType.ASKP)
+                scripts = data.GetAskpScripts();
+
+            else if (type is ScriptType.Zavod)
+                scripts = data.GetZavodScripts();
+
+            else return;
+
+            ScriptTypeCB.ItemsSource = scripts;
+            ScriptTypeCB.DisplayMemberPath = "Title";
+            ScriptTypeCB.SelectedItem = scripts[0];
+        }
+
+        private void ScriptType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (TypeScriptListMember)ScriptNameCB.SelectedItem;
+            FillScriptsComboBox(item.TypeOfScript);
         }
     }
 }

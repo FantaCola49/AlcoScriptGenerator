@@ -13,10 +13,22 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         public List<TypeScriptListMember> GetScriptTypes() => _scriptTypes;
 
         /// <summary>
-        /// Вернёт список скриптов
+        /// Вернёт список скриптов агроспота
         /// </summary>
         /// <returns></returns>
-        public List<Script> GetScripts() => _scripts;
+        public List<Script> GetAgrospotScripts() => _agrospotScripts;
+
+        /// <summary>
+        /// Список скриптов для АСКП
+        /// </summary>
+        /// <returns></returns>
+        public List<Script> GetAskpScripts() => _askpScripts;
+
+        /// <summary>
+        /// Список скриптов для заводов
+        /// </summary>
+        /// <returns></returns>
+        public List<Script> GetZavodScripts() => _zavodScripts;
 
 
         #region Private Members
@@ -43,17 +55,70 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             },
         };
 
-        private List<Script> _scripts = new List<Script>()
+        private List<Script> _agrospotScripts = new List<Script>()
         {
-            new Script 
-            { 
+            new Script
+            {
                 Id = 1,
-                Title = "",
-                Description = ""
+                Title = "GPS Navigation",
+                Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.Agrospot,
+                // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
+            },
+            new Script
+            {
+                Id = 2,
+                Title = "Сессии агроспот",
+                Description = "Выгрузка сессий агроспота",
+                СontainsArguments = false,
+                TypeOfScript = ScriptType.Agrospot,
+            },
+            new Script
+            {
+                Id = 3,
+                Title = "Суточные+ReplyId",
+                Description = "Выгрузка суточных, и их ReplyId (Тикеты)",
+                СontainsArguments = false,
+                TypeOfScript = ScriptType.Agrospot,
+            },
+            new Script
+            {
+                Id = 4,
+                Title = "Удаление GPS navigation",
+                Description = "Удаление GPS navigation. Необходим в случае ошибки типа XML(0,0) в логах службы отчётности",
+                СontainsArguments = true, //название пятиминутки
+                TypeOfScript = ScriptType.Agrospot,
+            },
+        };
+
+        //TODO: список всех скриптов?
+        //TODO: Скрипты АСКП
+        private List<Script> _askpScripts = new List<Script>()
+        {
+            new Script
+            {
+                Id = 1,
+                Title = "Тест",
+                Description = " ",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.ASKP,
                 // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
             },
         };
-        
+        // TODO: Скрипты Заводов
+        private List<Script> _zavodScripts = new List<Script>()
+        {
+            new Script
+            {
+                Id = 1,
+                Title = "Тест",
+                Description = " ",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.Zavod,
+                // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
+            },
+        };
         #endregion
     }
 }

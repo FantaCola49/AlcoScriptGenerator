@@ -10,5 +10,10 @@
         /// Описание
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Тип скрипта
+        /// </summary>
+        public ScriptType TypeOfScript { get; set; }
     }
 }

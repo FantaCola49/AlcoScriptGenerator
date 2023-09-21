@@ -19,6 +19,18 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// Вернёт список скриптов
         /// </summary>
         /// <returns></returns>
-        public List<Script> GetScripts();
+        public List<Script> GetAgrospotScripts();
+
+        /// <summary>
+        /// Список скриптов для АСКП
+        /// </summary>
+        /// <returns></returns>
+        public List<Script> GetAskpScripts();
+
+        /// <summary>
+        /// Список скриптов для заводов
+        /// </summary>
+        /// <returns></returns>
+        public List<Script> GetZavodScripts();
     }
 }

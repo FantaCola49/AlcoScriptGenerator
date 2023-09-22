@@ -13,7 +13,7 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// Получить список типов скриптов
         /// </summary>
         /// <returns></returns>
-        public List<TypeScriptListMember> GetScriptTypes();
+        public List<ScriptRelation> GetScriptTypes();
 
         /// <summary>
         /// Вернёт список скриптов
@@ -32,5 +32,10 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// </summary>
         /// <returns></returns>
         public List<Script> GetZavodScripts();
+
+        /// <summary>
+        /// Вернёт список скриптов в зависимости от типа
+        /// </summary>
+        public List<Script> GetScriptsByType(ScriptField type);
     }
 }

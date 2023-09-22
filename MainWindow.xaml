@@ -15,7 +15,6 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="0.05*"/>
-            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
 
         </Grid.ColumnDefinitions>
@@ -29,30 +28,14 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.10*"/>
-                <ColumnDefinition Width="0.40*"/>
-                <ColumnDefinition Width="0.40*"/>
-                <ColumnDefinition Width="0.10*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="0.1*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Генерировать!" Grid.Row="2" Name="GenBut" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="2" />
-        </Grid>
+
         <GroupBox Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="2" >
             <GroupBox.Header>
                 <TextBlock HorizontalAlignment="Center">
                     <Span FontWeight="Bold" FontFamily="Segoe UI" FontSize="14">Параметры запроса</Span>
                 </TextBlock>
             </GroupBox.Header>
-            <Frame Grid.Row="2" Grid.RowSpan="5">
-
-            </Frame>
+            <Frame Grid.Row="2" Grid.RowSpan="5" Name="ArgumentsFrame" NavigationUIVisibility="Hidden"/>
         </GroupBox>
 
         <Grid Grid.RowSpan="2" Grid.ColumnSpan="2">
@@ -73,7 +56,7 @@
             </Grid.RowDefinitions>
 
             <ComboBox Name="ScriptTypeCB" Grid.Row="1" VerticalAlignment="Stretch" Grid.Column="4" DisplayMemberPath="Title" SelectionChanged="ScriptTypeCB_SelectionChanged"/>
-            <ComboBox Name="ScriptNameCB" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="4" DisplayMemberPath="Title"/>
+            <ComboBox Name="ScriptNameCB" Grid.Row="3" VerticalAlignment="Stretch" Grid.Column="4" DisplayMemberPath="Title" SelectionChanged="ScriptNameCB_SelectionChanged"/>
             <Button Name="QScriptType" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="1" Click="QScriptType_Click">?</Button>
             <Button Name="QScriptName" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="3" Click="QScriptName_Click">?</Button>
             <TextBlock Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" Text="Тип скрипта" Grid.Row="1" Grid.Column="1"/>

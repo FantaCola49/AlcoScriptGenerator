@@ -1,20 +1,23 @@
-﻿namespace AlcoScriptGenerator.BusinessLogic.Entities
+﻿using System.Windows.Controls;
+
+namespace AlcoScriptGenerator.BusinessLogic.Entities
 {
-    /// <summary>
-    /// Сущность скрипта
-    /// </summary>
-    public class Script : TypeScriptListMember
+    public sealed class Script : BaseEntity
     {
         /// <summary>
-        /// Тело скрипта
+        /// Тип скрипта
         /// </summary>
-        public string Body { get; set; }
+        public ScriptType TypeOfScript { get; set; }
 
         /// <summary>
         /// Содержит аргументы для внесения?
         /// </summary>
         public bool СontainsArguments { get; set; }
 
+        /// <summary>
+        /// Логика страницы
+        /// </summary>
+        public Page PageBody { get; set; }
     }
 
     /// <summary>
@@ -23,8 +26,17 @@
     public enum ScriptType
     {
         Other,
+        /// <summary>
+        /// Скрипт Агроспота
+        /// </summary>
         Agrospot,
+        /// <summary>
+        /// Скрипт АСКП
+        /// </summary>
         ASKP,
-        Zavod,
+        /// <summary>
+        /// Скрипт Завода
+        /// </summary>
+        Zavod
     }
 }

@@ -1,5 +1,7 @@
-﻿using AlcoScriptGenerator.BusinessLogic.Interfaces;
+﻿using AlcoScriptGenerator.BusinessLogic.Entities;
+using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace AlcoScriptGenerator.Pages
@@ -42,6 +44,11 @@ namespace AlcoScriptGenerator.Pages
                 [AskpDb].[dbo].[LevelMeterData] as b
                 on a.Id = b.GpsPointId 
                 WHERE a.ControllerId = 581 AND a.GmtTime BETWEEN  and  ORDER BY a.GmtTime";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ScriptDto.Script = GenerateScript();
         }
     }
 }

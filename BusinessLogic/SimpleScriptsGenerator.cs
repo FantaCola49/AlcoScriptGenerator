@@ -10,9 +10,9 @@ namespace AlcoScriptGenerator.BusinessLogic
         /// </summary>
         /// <param name="script"></param>
         /// <returns></returns>
-        public string GetSimpleScript(Script script)
+        public void GetSimpleScript(Script script)
         {
-            if (script == null) return string.Empty;
+            if (script == null) return;
 
             var type = script.TypeOfScript;
 
@@ -23,7 +23,7 @@ namespace AlcoScriptGenerator.BusinessLogic
                 ScriptType.ASKP => AskpScript(script),
                 _ => string.Empty,
             };
-            return result;
+            ScriptDto.Script = result;
         }
 
         /// <summary>

@@ -12,6 +12,6 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// </summary>
         /// <param name="script"></param>
         /// <returns></returns>
-        public string GetSimpleScript(Script script);
+        public void GetSimpleScript(Script script);
     }
 }

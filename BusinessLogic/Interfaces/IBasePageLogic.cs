@@ -1,4 +1,6 @@
-﻿namespace AlcoScriptGenerator.BusinessLogic.Interfaces
+﻿using System.Windows;
+
+namespace AlcoScriptGenerator.BusinessLogic.Interfaces
 {
     public interface IBaseFrameLogic
     {

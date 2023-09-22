@@ -8,7 +8,7 @@
         /// <summary>
         /// Область применения скрипта
         /// </summary>
-        public ScriptField ScriptField { get; set; }
+        public ScriptField ScriptField { get; init; }
     }
 
     /// <summary>

@@ -39,6 +39,8 @@ namespace AlcoScriptGenerator
         /// Выбранный скрипт в ниспадающем окне
         /// </summary>
         private Script _selectedScript { get; set; }
+
+        public string LocalScript { get; set; }
         #endregion
 
         public MainWindow()
@@ -127,6 +129,7 @@ namespace AlcoScriptGenerator
             if (_selectedScript is null)
                 return;
             GenerateScript();
+            GeneratedScriptTB.Text = ScriptDto.Script;
         }
         /// <summary>
         /// Генерируем скрипт в зависимости от наличия аргументов
@@ -136,7 +139,7 @@ namespace AlcoScriptGenerator
             GeneratedScriptTB.Text = string.Empty;
             if (_selectedScript.СontainsArguments.Equals(false) ||
                 _selectedScript is null)
-                GeneratedScriptTB.Text = _gen.GetSimpleScript(_selectedScript);
+                _gen.GetSimpleScript(_selectedScript);
             
             var uri = _nav.UriToScriptPage(_selectedScript);
             ArgumentsFrame.Navigate(uri);

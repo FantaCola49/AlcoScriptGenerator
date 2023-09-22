@@ -8,16 +8,16 @@
         /// <summary>
         /// Идентификатор записи
         /// </summary>
-        public int Id { get; set; }
+        public int Id { get; init; }
 
         /// <summary>
         /// Название
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; init; }
 
         /// <summary>
         /// Описание
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; init; }
     }
 }

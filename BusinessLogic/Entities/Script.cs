@@ -7,17 +7,17 @@ namespace AlcoScriptGenerator.BusinessLogic.Entities
         /// <summary>
         /// Тип скрипта
         /// </summary>
-        public ScriptType TypeOfScript { get; set; }
+        public ScriptType TypeOfScript { get; init; }
 
         /// <summary>
         /// Содержит аргументы для внесения?
         /// </summary>
-        public bool СontainsArguments { get; set; }
+        public bool СontainsArguments { get; init; }
 
         /// <summary>
         /// Логика страницы
         /// </summary>
-        public Page PageBody { get; set; }
+        public Page PageBody { get; init; }
     }
 
     /// <summary>

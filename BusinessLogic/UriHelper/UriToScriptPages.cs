@@ -36,13 +36,13 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
 
         #region Agrospot
         private protected Uri ToGpsNavigationSearchPage() => PagePathFactory("GpsNavigationSearch.xaml", ScriptType.Agrospot);
-        private protected Uri ToDeleteGpsNavigation() => PagePathFactory("DeleteGpsNavigation.xaml", ScriptType.Agrospot);
+        private protected Uri ToDeleteGpsNavigationPage() => PagePathFactory("DeleteGpsNavigation.xaml", ScriptType.Agrospot);
 
         #endregion
 
 
         #region Zavod
-
+        private protected Uri ToMinMaxDatePage() => PagePathFactory("MinMaxDatePage.xaml", ScriptType.Zavod);
 
         #endregion
 

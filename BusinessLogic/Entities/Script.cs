@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace AlcoScriptGenerator.BusinessLogic.Entities
+﻿namespace AlcoScriptGenerator.BusinessLogic.Entities
 {
     public sealed class Script : BaseEntity
     {
@@ -15,9 +13,9 @@ namespace AlcoScriptGenerator.BusinessLogic.Entities
         public bool СontainsArguments { get; init; }
 
         /// <summary>
-        /// Логика страницы
+        /// Идентификатор скриптов
         /// </summary>
-        public Page PageBody { get; init; }
+        public ScriptId ScriptId { get; init; }
     }
 
     /// <summary>
@@ -38,5 +36,82 @@ namespace AlcoScriptGenerator.BusinessLogic.Entities
         /// Скрипт Завода
         /// </summary>
         Zavod
+    }
+
+    /// <summary>
+    /// Идентификаторы скриптов
+    /// </summary>
+    public enum ScriptId
+    {
+
+        #region Agrospot
+        /// <summary>
+        /// (Агроспот) Удаление GPS навигации
+        /// </summary>
+        DeleteGpsNavigation = 13,
+
+        /// <summary>
+        /// (Агроспот) Выгрузка GPS навигации
+        /// </summary>
+        GpsNavigationSearch = 14,
+        #endregion
+
+        #region Zavod
+
+        /// <summary>
+        /// (Zavod) Сессии завода
+        /// </summary>
+        ZavodSessionsMinMaxDate = 21,
+
+        /// <summary>
+        /// (Zavod) Выгрузка суточных
+        /// </summary>
+        ZavodDailies = 23,
+
+        /// <summary>
+        /// (Zavod) Дискреты Remastered
+        /// </summary>
+        ZavodDiscreteFullRemastered = 24,
+
+        /// <summary>
+        /// (Zavod) Расходомеры по линиям
+        /// </summary>
+        ZavodFlowmeteresByLines = 25,
+
+        #endregion
+
+        #region ASKP
+
+        /// <summary>
+        /// (ASKP) Поиск контроллера по его номеру
+        /// </summary>
+        SearchControllerByItsNumber = 31,
+
+        /// <summary>
+        /// (ASKP) Выгрузка сессии с указанием
+        /// </summary>
+        VehicleSessions = 32,
+
+        /// <summary>
+        /// (ASKP) История контроллеров
+        /// </summary>
+        VehicleEvents = 33,
+
+        /// <summary>
+        /// (ASKP) GpsPoint_Data_Controller + Organization
+        /// </summary>
+        VehicleGpsPointDataControllerAndOrganization = 34,
+
+        /// <summary>
+        /// (ASKP) Добавить сессию агроспота в АСКП
+        /// </summary>
+        AddAgrospotSession = 35,
+
+        /// <summary>
+        /// (ASKP) Суточные файлы по организации
+        /// </summary>
+        DailyFilesByOrganization = 38,
+
+        #endregion
     }
 }

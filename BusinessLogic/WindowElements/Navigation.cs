@@ -40,10 +40,10 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         /// <returns></returns>
         private Uri ReturnAgrospotRelatedUri(Script? item)
         {
-            Uri uri = item.Id switch
+            Uri uri = item.ScriptId switch
             {
-                3 => ToDeleteGpsNavigation(),
-                4 => ToGpsNavigationSearchPage(),
+                ScriptId.DeleteGpsNavigation => ToDeleteGpsNavigationPage(),
+                ScriptId.GpsNavigationSearch => ToGpsNavigationSearchPage(),
                 _ => ToBlancPage(),
             };
             return uri;
@@ -56,8 +56,11 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         /// <returns></returns>
         private Uri ReturnZavodRelatedUri(Script? item)
         {
-            Uri uri = item.Id switch
+            Uri uri = item.ScriptId switch
             {
+                ScriptId.ZavodSessionsMinMaxDate => ToMinMaxDatePage(),
+                ScriptId.ZavodDiscreteFullRemastered => ToMinMaxDatePage(),
+                ScriptId.ZavodDailies => ToMinMaxDatePage(),
                 _ => ToBlancPage(),
             };
             return uri;

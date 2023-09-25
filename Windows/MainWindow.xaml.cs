@@ -30,11 +30,6 @@ namespace AlcoScriptGenerator
         /// Генератор скриптов без аргументов
         /// </summary>
         private ISimpleScriptsGenerator _gen;
-
-        /// <summary>
-        /// Выбранный скрипт в ниспадающем окне
-        /// </summary>
-        private Script _selectedScript { get; set; }
         #endregion
 
         public MainWindow()
@@ -49,6 +44,7 @@ namespace AlcoScriptGenerator
             FillTypeScriptsComboBox();
             // Заполняем ниспадающий список скриптов
             FillScriptsComboBox(ScriptField.Agrospot_Related);
+
         }
 
         /// <summary>
@@ -58,10 +54,10 @@ namespace AlcoScriptGenerator
         /// <param name="e"></param>
         private void QScriptType_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedScript is null)
+            if (ScriptDto.SelectedScript is null)
                 _btn.QScriptType(null, null);
             else
-                _btn.QScriptType(_selectedScript.Title, _selectedScript.Description);
+                _btn.QScriptType(ScriptDto.SelectedScript.Title, ScriptDto.SelectedScript.Description);
         }
 
         /// <summary>
@@ -71,10 +67,10 @@ namespace AlcoScriptGenerator
         /// <param name="e"></param>
         private void QScriptName_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedScript is null)
+            if (ScriptDto.SelectedScript is null)
                 _btn.QScriptType(null, null);
             else
-                _btn.QScriptType(_selectedScript.Title, _selectedScript.Description);
+                _btn.QScriptType(ScriptDto.SelectedScript.Title, ScriptDto.SelectedScript.Description);
         }
 
         /// <summary>
@@ -125,8 +121,8 @@ namespace AlcoScriptGenerator
         /// <param name="e"></param>
         private void ScriptNameCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _selectedScript = (Script)ScriptNameCB.SelectedItem;
-            if (_selectedScript is null)
+            ScriptDto.SelectedScript = (Script)ScriptNameCB.SelectedItem;
+            if (ScriptDto.SelectedScript is null)
                 return;
             GenerateScript();
         }
@@ -136,7 +132,7 @@ namespace AlcoScriptGenerator
         /// </summary>
         private void DisplayScript()
         {
-            GeneratedScriptTB.Text = ScriptDto.Script;
+            GeneratedScriptTB.Text = ScriptDto.ScriptBody;
         }
 
         /// <summary>
@@ -144,11 +140,11 @@ namespace AlcoScriptGenerator
         /// </summary>
         private void GenerateScript()
         {
-            if (_selectedScript.СontainsArguments.Equals(false) ||
-                _selectedScript is null)
+            if (ScriptDto.SelectedScript.СontainsArguments.Equals(false) ||
+                ScriptDto.SelectedScript is null)
             {
-                _gen.GetSimpleScript(_selectedScript);
-                //для простого скрипта Frame не нужен
+                _gen.GetSimpleScript(ScriptDto.SelectedScript);
+                // Для простого скрипта Frame не отображаем
                 var uri = _nav.UriToScriptPage(new Script() { TypeOfScript = ScriptType.Other });
                 ArgumentsFrame.Navigate(uri);
             }
@@ -157,7 +153,7 @@ namespace AlcoScriptGenerator
             {
                 // Чтобы старый скрипт не отображался в окне
                 ScriptDto.SetNewScript(string.Empty);
-                var uri = _nav.UriToScriptPage(_selectedScript);
+                var uri = _nav.UriToScriptPage(ScriptDto.SelectedScript);
                 ArgumentsFrame.Navigate(uri);
             }
 

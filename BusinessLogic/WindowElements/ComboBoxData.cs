@@ -1,6 +1,5 @@
 ﻿using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
-using AlcoScriptGenerator.Pages;
 using System.Collections.Generic;
 
 namespace AlcoScriptGenerator.BusinessLogic.WindowElements
@@ -14,25 +13,6 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         public List<ScriptRelation> GetScriptTypes() => _scriptTypes;
 
         /// <summary>
-        /// Вернёт список скриптов агроспота
-        /// </summary>
-        /// <returns></returns>
-        public List<Script> GetAgrospotScripts() => _agrospotScripts;
-
-        /// <summary>
-        /// Список скриптов для АСКП
-        /// </summary>
-        /// <returns></returns>
-        public List<Script> GetAskpScripts() => _askpScripts;
-
-        /// <summary>
-        /// Список скриптов для заводов
-        /// </summary>
-        /// <returns></returns>
-        public List<Script> GetZavodScripts() => _zavodScripts;
-
-
-        /// <summary>
         /// Подготовит выпадающий список скриптов для агроспотов
         /// </summary>
         public List<Script> GetScriptsByType(ScriptField type)
@@ -40,9 +20,9 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             List<Script> scripts = new();
             scripts = type switch
             {
-                ScriptField.Agrospot_Related => GetAgrospotScripts(),
-                ScriptField.Zavod_Related => GetZavodScripts(),
-                ScriptField.ASKP_Related => GetAskpScripts(),
+                ScriptField.Agrospot_Related => _agrospotScripts,
+                ScriptField.Zavod_Related => _zavodScripts,
+                ScriptField.ASKP_Related => _askpScripts,
             };
             if (scripts.Count.Equals(0))
                 return null;
@@ -99,21 +79,20 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             },
             new Script
             {
-                Id = 3,
                 Title = "Удаление GPS navigation",
                 Description = "Удаление GPS navigation. Необходим в случае ошибки типа XML(0,0) в логах службы отчётности",
-                СontainsArguments = true, //название пятиминутки
+                СontainsArguments = true,
                 TypeOfScript = ScriptType.Agrospot,
+                ScriptId = ScriptId.DeleteGpsNavigation,
             },
-            
+
             new Script
             {
-                Id = 4,
                 Title = "GPS Navigation",
                 Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.Agrospot,
-                PageBody = new GpsNavigationSearch(),
+                ScriptId = ScriptId.GpsNavigationSearch,
             },
             #endregion
         };
@@ -128,7 +107,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.ASKP,
-                PageBody = new GpsNavigationSearch(),
+                
             },
         };
 
@@ -137,11 +116,11 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             new Script
             {
-                Id = 1,
                 Title = "СессийЗаводаMinMaxDate",
                 Description = "Сессии завода за указанный период",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.Zavod,
+                ScriptId = ScriptId.ZavodSessionsMinMaxDate,
             },
 
             new Script
@@ -155,20 +134,20 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
             new Script
             {
-                Id = 3,
-                Title = "Удалить по коду продукта",
-                Description = "Удалить продукты по их кодам",
+                Title = "Суточные",
+                Description = "Выгрузить суточные по указанной дате",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.Zavod,
+                ScriptId = ScriptId.ZavodDailies,
             },
 
             new Script
             {
-                Id = 4,
                 Title = "Дискреты",
                 Description = "Выгрузка дискретов за указанный период для анализа",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.Zavod,
+                ScriptId = ScriptId.ZavodDiscreteFullRemastered,
             },
 
             new Script

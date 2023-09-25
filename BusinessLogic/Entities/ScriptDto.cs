@@ -8,7 +8,12 @@
         /// <summary>
         /// Непосредственно скрипт
         /// </summary>
-        public static string Script { get; private set; }
+        public static string ScriptBody { get; private set; }
+
+        /// <summary>
+        /// Выбранный скрипт
+        /// </summary>
+        public static Script SelectedScript { get; set; }
 
         /// <summary>
         /// Делегат обработки событий со скриптом
@@ -26,7 +31,7 @@
         /// <param name="newScript"></param>
         public static void SetNewScript(string newScript)
         {
-            Script = newScript;
+            ScriptBody = newScript;
             ScriptChanged?.Invoke();
             return;
         }

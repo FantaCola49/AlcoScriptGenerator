@@ -1,4 +1,5 @@
-﻿using AlcoScriptGenerator.BusinessLogic.Entities;
+﻿using AlcoScriptGenerator.BusinessLogic;
+using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System;
 using System.Windows;
@@ -15,10 +16,13 @@ namespace AlcoScriptGenerator.Pages
         /// Валидация
         /// </summary>
         private InputValidation _val;
+
+        private IComplexScriptsGenerator _gen;
         public GpsNavigationSearch()
         {
             InitializeComponent();
             _val = new InputValidation();
+            _gen = new ComplexScriptsGenerator();
         }
 
         public string GenerateScript()
@@ -39,21 +43,7 @@ namespace AlcoScriptGenerator.Pages
                 || string.IsNullOrEmpty(vehicleNumber))
                 return _val.NotEnoughArgs;
 
-            return
-            @$" --****Скрипт выгрузки пятиминуток****--
-                DECLARE @StartDate DATE;
-                DECLARE @EndDate DATE;
-
-                SET @StartDate = '{startDate}'
-                SET @EndDate = '{endDate}'
-
-                SELECT *
-                FROM [AskpDb].[dbo].[GpsPoint] as a FULL OUTER JOIN
-                [AskpDb].[dbo].[LevelMeterData] as b
-                on a.Id = b.GpsPointId 
-                WHERE a.ControllerId = (SELECT Id FROM AskpDB.dbo.Controller WHERE VehicleIdentificationNumber LIKE '%{vehicleNumber}%')
-				AND a.GmtTime BETWEEN @StartDate and @EndDate
-				ORDER BY a.GmtTime";
+            return _gen.GpsNavigationSearch(startDate, endDate, vehicleNumber);            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

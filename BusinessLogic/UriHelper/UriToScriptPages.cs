@@ -8,8 +8,13 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
     /// </summary>
     public class UriToScriptPages
     {
-        private readonly ScriptType ag = ScriptType.Agrospot;
+        /// <summary>
+        /// ПАПКА ZАВОДОВ
+        /// </summary>
         private readonly ScriptType z = ScriptType.Zavod;
+        /// <summary>
+        /// ПАПКА АСКП
+        /// </summary>
         private readonly ScriptType As = ScriptType.ASKP;
         
         private Uri PagePathFactory(string pageName, ScriptType type)
@@ -30,10 +35,8 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
         }
 
         #region Agrospot
-
-        private protected Uri ToGpsNavigationSearchPage() => PagePathFactory("GpsNavigationSearch.xaml",ag);
-
-
+        private protected Uri ToGpsNavigationSearchPage() => PagePathFactory("GpsNavigationSearch.xaml", ScriptType.Agrospot);
+        private protected Uri ToDeleteGpsNavigation() => PagePathFactory("DeleteGpsNavigation.xaml", ScriptType.Agrospot);
 
         #endregion
 

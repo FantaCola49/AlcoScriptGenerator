@@ -16,4 +16,8 @@
     <Folder Include="Pages\Zavod\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
 </Project>

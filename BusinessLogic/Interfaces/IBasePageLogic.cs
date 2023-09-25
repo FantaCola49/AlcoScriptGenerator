@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace AlcoScriptGenerator.BusinessLogic.Interfaces
+﻿namespace AlcoScriptGenerator.BusinessLogic.Interfaces
 {
     public interface IBaseFrameLogic
     {
@@ -9,9 +7,5 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// </summary>
         /// <returns></returns>
         public string GenerateScript();
-
-
-        // Не уверен, что понадобиться
-        //public string GetUriPath();
     }
 }

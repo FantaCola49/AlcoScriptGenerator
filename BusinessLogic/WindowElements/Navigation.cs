@@ -42,7 +42,8 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             Uri uri = item.Id switch
             {
-                1 => ToGpsNavigationSearchPage(),
+                3 => ToDeleteGpsNavigation(),
+                4 => ToGpsNavigationSearchPage(),
                 _ => ToBlancPage(),
             };
             return uri;
@@ -71,6 +72,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             Uri uri = item.Id switch
             {
+
                 _ => ToBlancPage(),
             };
             return uri;

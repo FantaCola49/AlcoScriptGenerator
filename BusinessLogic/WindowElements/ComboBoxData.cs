@@ -80,19 +80,10 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         private List<Script> _agrospotScripts = new List<Script>()
         {
             // ID ОЧЕНЬ важны, по ним определяем, на какую страницу переходим
+            #region Agrospot
             new Script
             {
                 Id = 1,
-                Title = "GPS Navigation",
-                Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
-                СontainsArguments = true,
-                TypeOfScript = ScriptType.Agrospot,
-                PageBody = new GpsNavigationSearch(),
-                // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
-            },
-            new Script
-            {
-                Id = 2,
                 Title = "Сессии агроспот",
                 Description = "Выгрузка сессий агроспота",
                 СontainsArguments = false,
@@ -100,7 +91,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             },
             new Script
             {
-                Id = 3,
+                Id = 2,
                 Title = "Суточные+ReplyId",
                 Description = "Выгрузка суточных, и их ReplyId (Тикеты)",
                 СontainsArguments = false,
@@ -108,39 +99,85 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             },
             new Script
             {
-                Id = 4,
+                Id = 3,
                 Title = "Удаление GPS navigation",
                 Description = "Удаление GPS navigation. Необходим в случае ошибки типа XML(0,0) в логах службы отчётности",
                 СontainsArguments = true, //название пятиминутки
                 TypeOfScript = ScriptType.Agrospot,
             },
+            
+            new Script
+            {
+                Id = 4,
+                Title = "GPS Navigation",
+                Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.Agrospot,
+                PageBody = new GpsNavigationSearch(),
+            },
+            #endregion
         };
 
-        //TODO: список всех скриптов?
-        //TODO: Скрипты АСКП
+        // Скрипты АСКП
         private List<Script> _askpScripts = new List<Script>()
         {
             new Script
             {
                 Id = 1,
-                Title = "Тест",
-                Description = " ",
+                Title = "GPS Navigation",
+                Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.ASKP,
-                // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
+                PageBody = new GpsNavigationSearch(),
             },
         };
-        // TODO: Скрипты Заводов
+
+        // Скрипты Заводов
         private List<Script> _zavodScripts = new List<Script>()
         {
             new Script
             {
                 Id = 1,
-                Title = "Тест",
-                Description = " ",
+                Title = "СессийЗаводаMinMaxDate",
+                Description = "Сессии завода за указанный период",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.Zavod,
-                // По задумке Тело скрипта будет обрабатываться фабрикой. Поэтому, добавляем только Название и описание
+            },
+
+            new Script
+            {
+                Id = 2,
+                Title = "НастройкиПоЛиниям",
+                Description = "Настройки по линиям для продуктов",
+                СontainsArguments = false,
+                TypeOfScript = ScriptType.Zavod,
+            },
+
+            new Script
+            {
+                Id = 3,
+                Title = "Удалить по коду продукта",
+                Description = "Удалить продукты по их кодам",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.Zavod,
+            },
+
+            new Script
+            {
+                Id = 4,
+                Title = "Дискреты",
+                Description = "Выгрузка дискретов за указанный период для анализа",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.Zavod,
+            },
+
+            new Script
+            {
+                Id = 5,
+                Title = "РасходомерыПоЛиниям",
+                Description = "Названия расходомеров, прикреплённых к линиям",
+                СontainsArguments = false,
+                TypeOfScript = ScriptType.Zavod,
             },
         };
         #endregion

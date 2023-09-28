@@ -1,4 +1,4 @@
-﻿using AlcoScriptGenerator.BusinessLogic;
+﻿using AlcoScriptGenerator.BusinessLogic.ScriptGeneration;
 using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System.Windows;
@@ -11,13 +11,11 @@ namespace AlcoScriptGenerator.Pages.Agrospot
     /// </summary>
     public partial class DeleteGpsNavigation : Page, IBaseFrameLogic
     {
-        InputValidation _val;
         IComplexScriptsGenerator _gen;
 
         public DeleteGpsNavigation()
         {
             InitializeComponent();
-            _val = new InputValidation();
             _gen = new ComplexScriptsGenerator();
         }
 
@@ -34,7 +32,7 @@ namespace AlcoScriptGenerator.Pages.Agrospot
         private string ScriptGeneration(string gpsName)
         {
             if (string.IsNullOrEmpty(gpsName))
-                return _val.NotEnoughArgs;
+                return InputValidation.NotEnoughArgs;
 
             return _gen.DeleteGpsNavigation(gpsName);
         }

@@ -1,4 +1,4 @@
-﻿using AlcoScriptGenerator.BusinessLogic;
+﻿using AlcoScriptGenerator.BusinessLogic.ScriptGeneration;
 using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using AlcoScriptGenerator.BusinessLogic.WindowElements;

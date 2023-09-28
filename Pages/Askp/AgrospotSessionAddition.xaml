@@ -1,0 +1,68 @@
+﻿<Page x:Class="AlcoScriptGenerator.Pages.Askp.AgrospotSessionAddition"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AlcoScriptGenerator.Pages.Askp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AgrospotSessionAddition">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="GO!" Click="Button_Click"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.02*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.02*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow" Grid.Column="1" Name="RawSessionInputTB" />
+        </Grid>
+        <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Column="1" Grid.Row="1" Name="VehicleNumberTB" PreviewTextInput="VehicleNumberTB_PreviewTextInput"/>
+        </Grid>
+
+        <TextBlock Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" 
+                   Grid.ColumnSpan="2" FontSize="21" Grid.Row="1"
+                   Text="Введите содержание сессии агроспота с указанием наименования столбцов"/>
+
+        <TextBlock Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" 
+                   Grid.ColumnSpan="1" FontSize="21"
+                   Text="Номер агроспота"/>
+
+    </Grid>
+</Page>

@@ -1,4 +1,4 @@
-﻿using AlcoScriptGenerator.BusinessLogic;
+﻿using AlcoScriptGenerator.BusinessLogic.ScriptGeneration;
 using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System;
@@ -12,16 +12,11 @@ namespace AlcoScriptGenerator.Pages
     /// </summary>
     public partial class GpsNavigationSearch : Page, IBaseFrameLogic
     {
-        /// <summary>
-        /// Валидация
-        /// </summary>
-        private InputValidation _val;
 
         private IComplexScriptsGenerator _gen;
         public GpsNavigationSearch()
         {
             InitializeComponent();
-            _val = new InputValidation();
             _gen = new ComplexScriptsGenerator();
         }
 
@@ -41,7 +36,7 @@ namespace AlcoScriptGenerator.Pages
             if (   startDate == null 
                 || endDate == null
                 || string.IsNullOrEmpty(vehicleNumber))
-                return _val.NotEnoughArgs;
+                return InputValidation.NotEnoughArgs;
 
             return _gen.GpsNavigationSearch(startDate, endDate, vehicleNumber);            
         }
@@ -51,9 +46,14 @@ namespace AlcoScriptGenerator.Pages
             ScriptDto.SetNewScript(GenerateScript());
         }
 
+        /// <summary>
+        /// Только цифры, братан
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VehicleNumberTB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            if (_val.digitalFilter.IsMatch(e.Text))
+            if (InputValidation.DigitalFilter.IsMatch(e.Text))
                 e.Handled = false;
             else 
                 e.Handled = true;

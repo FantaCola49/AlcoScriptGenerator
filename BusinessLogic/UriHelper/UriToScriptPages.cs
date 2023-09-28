@@ -48,7 +48,7 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
 
 
         #region ASKP
-
+        private protected Uri ToAgrospotSessionAdditionPage() => PagePathFactory("AgrospotSessionAddition.xaml", ScriptType.ASKP);
         #endregion
 
         #region Other

@@ -2,9 +2,9 @@
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System;
 
-namespace AlcoScriptGenerator.BusinessLogic
+namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 {
-    class ComplexScriptsGenerator : IComplexScriptsGenerator
+    public class ComplexScriptsGenerator : AddAgrospotSessionToAskpScript, IComplexScriptsGenerator
     {
         /// <summary>
         /// Сгенерировать скрипт для завода в зависимости от выбранного элемента
@@ -16,8 +16,8 @@ namespace AlcoScriptGenerator.BusinessLogic
         {
             return ScriptDto.SelectedScript.ScriptId switch
             {
-                ScriptId.ZavodSessionsMinMaxDate     => ZavodSessionsMinMaxDate(startDate, endDate),
-                ScriptId.ZavodDailies                => ZavodDailies(startDate, endDate),
+                ScriptId.ZavodSessionsMinMaxDate => ZavodSessionsMinMaxDate(startDate, endDate),
+                ScriptId.ZavodDailies => ZavodDailies(startDate, endDate),
                 ScriptId.ZavodDiscreteFullRemastered => ZavodDiscreteFullRemastered(startDate, endDate)
 
             };
@@ -356,9 +356,16 @@ namespace AlcoScriptGenerator.BusinessLogic
         /// </summary>
         /// <param name="inputData"></param>
         /// <returns></returns>
-        public string AddAgrospotSession(string inputData)
+        public string AddAgrospotSession(string inputData, string vehicleNum)
         {
-            return string.Empty;
+            try
+            {
+                return base.AddAgrospotSessionTest(inputData, vehicleNum);
+            }
+            catch (Exception ex)
+            {
+                return $"{InputValidation.AskpScriptViolation()}\n\n{ex.Message}\n\n{ex.StackTrace}";
+            }
         }
 
         /// <summary>

@@ -29,13 +29,13 @@
         </Grid.RowDefinitions>
 
 
-        <GroupBox Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="2" >
+        <GroupBox Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="2" Background="Transparent" >
             <GroupBox.Header>
                 <TextBlock HorizontalAlignment="Center">
                     <Span FontWeight="Bold" FontFamily="Segoe UI" FontSize="14">Параметры запроса</Span>
                 </TextBlock>
             </GroupBox.Header>
-            <Frame Grid.Row="2" Grid.RowSpan="5" Name="ArgumentsFrame" NavigationUIVisibility="Hidden"/>
+            <Frame Grid.Row="2" Grid.RowSpan="5" Name="ArgumentsFrame" NavigationUIVisibility="Hidden" Background="Transparent"/>
         </GroupBox>
 
         <Grid Grid.RowSpan="2" Grid.ColumnSpan="2">

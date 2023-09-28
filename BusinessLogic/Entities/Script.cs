@@ -85,32 +85,32 @@
         /// <summary>
         /// (ASKP) Поиск контроллера по его номеру
         /// </summary>
-        SearchControllerByItsNumber = 31,
+        AskpSearchControllerByItsNumber = 31,
 
         /// <summary>
         /// (ASKP) Выгрузка сессии с указанием
         /// </summary>
-        VehicleSessions = 32,
+        AskpVehicleSessions = 32,
 
         /// <summary>
         /// (ASKP) История контроллеров
         /// </summary>
-        VehicleEvents = 33,
+        AskpVehicleEvents = 33,
 
         /// <summary>
         /// (ASKP) GpsPoint_Data_Controller + Organization
         /// </summary>
-        VehicleGpsPointDataControllerAndOrganization = 34,
+        AskpVehicleGpsPointDataControllerAndOrganization = 34,
 
         /// <summary>
         /// (ASKP) Добавить сессию агроспота в АСКП
         /// </summary>
-        AddAgrospotSession = 35,
+        AskpAddAgrospotSession = 35,
 
         /// <summary>
         /// (ASKP) Суточные файлы по организации
         /// </summary>
-        DailyFilesByOrganization = 38,
+        AskpDailyFilesByOrganization = 38,
 
         #endregion
     }

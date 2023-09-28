@@ -102,11 +102,11 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             new Script
             {
-                Id = 1,
-                Title = "GPS Navigation",
-                Description = "Скрипт для выгрузки GPS Navigation (Пятиминутки агроспота)",
+                Title = "AddAgrospotSession",
+                Description = "Добавление сесси агроспота в АСКП на основе скопированных данных сессии",
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpAddAgrospotSession,
                 
             },
         };

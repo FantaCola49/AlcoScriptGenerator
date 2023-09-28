@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlcoScriptGenerator", "AlcoScriptGenerator.csproj", "{F9F04171-6F4A-4C90-B2AD-744122FEB4B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlcoScriptGenerator", "AlcoScriptGenerator.csproj", "{F9F04171-6F4A-4C90-B2AD-744122FEB4B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlcoScriptGeneratorTests", "..\AlcoScriptGeneratorTests\AlcoScriptGeneratorTests.csproj", "{41BEDA60-D1D6-4655-841D-ACA76011DAE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{44142361-7467-472F-ADE9-196C84FAF6B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{F9F04171-6F4A-4C90-B2AD-744122FEB4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F04171-6F4A-4C90-B2AD-744122FEB4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F04171-6F4A-4C90-B2AD-744122FEB4B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41BEDA60-D1D6-4655-841D-ACA76011DAE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BEDA60-D1D6-4655-841D-ACA76011DAE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BEDA60-D1D6-4655-841D-ACA76011DAE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BEDA60-D1D6-4655-841D-ACA76011DAE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41BEDA60-D1D6-4655-841D-ACA76011DAE2} = {44142361-7467-472F-ADE9-196C84FAF6B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {59F01DE3-2CA1-4CF1-B215-65ED933682E6}

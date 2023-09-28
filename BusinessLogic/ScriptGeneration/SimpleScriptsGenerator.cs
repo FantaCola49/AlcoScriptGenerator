@@ -1,7 +1,7 @@
 ﻿using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 
-namespace AlcoScriptGenerator.BusinessLogic
+namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 {
     public class SimpleScriptsGenerator : ISimpleScriptsGenerator
     {

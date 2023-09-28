@@ -1,5 +1,4 @@
-﻿using AlcoScriptGenerator.BusinessLogic;
-using AlcoScriptGenerator.BusinessLogic.Entities;
+﻿using AlcoScriptGenerator.BusinessLogic.ScriptGeneration;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +22,7 @@ namespace AlcoScriptGenerator.Pages.Zavod
 
         public string GenerateScript()
         {
-            string result = ScriptDto.SelectedScript.ScriptId switch
-            {
-                ScriptId.ZavodDailies => 
-            };
-            return string.Empty;
+            return "NotImplemented!";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

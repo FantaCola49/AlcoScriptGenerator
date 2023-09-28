@@ -58,9 +58,9 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             Uri uri = item.ScriptId switch
             {
-                ScriptId.ZavodSessionsMinMaxDate => ToMinMaxDatePage(),
+                ScriptId.ZavodSessionsMinMaxDate     => ToMinMaxDatePage(),
                 ScriptId.ZavodDiscreteFullRemastered => ToMinMaxDatePage(),
-                ScriptId.ZavodDailies => ToMinMaxDatePage(),
+                ScriptId.ZavodDailies                => ToMinMaxDatePage(),
                 _ => ToBlancPage(),
             };
             return uri;
@@ -73,9 +73,9 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         /// <returns></returns>
         private Uri ReturnAskpRelatedUri(Script? item)
         {
-            Uri uri = item.Id switch
+            Uri uri = item.ScriptId switch
             {
-
+                ScriptId.AskpAddAgrospotSession => ToAgrospotSessionAdditionPage(),
                 _ => ToBlancPage(),
             };
             return uri;

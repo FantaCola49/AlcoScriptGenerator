@@ -77,6 +77,6 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// </summary>
         /// <param name="inputData"></param>
         /// <returns></returns>
-        public string AddAgrospotSession(string inputData);
+        public string AddAgrospotSession(string inputData, string vehicleNum);
     }
 }

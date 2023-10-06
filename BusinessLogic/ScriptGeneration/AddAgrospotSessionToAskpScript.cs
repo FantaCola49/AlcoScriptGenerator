@@ -17,12 +17,12 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <summary>
         /// Номер ТС
         /// </summary>
-        private string vehicleNumber { get; set; }
+        private string _vehicleNumber { get; set; }
 
         /// <summary>
         /// Список ключевых слов-названий столбцов, необходимых для скрипта
         /// </summary>
-        private readonly List<string> keyWords = new List<string>()
+        private readonly List<string> _keyWords = new List<string>()
         {
             "Mode",
             "LineId",
@@ -46,7 +46,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <summary>
         /// Список слов-столбцов, подлежащих замене
         /// </summary>
-        private readonly List<string> wordsToChange = new()
+        private readonly List<string> _wordsToChange = new()
         {
             "LineId",
             "MassTotalizerOnStart",
@@ -55,7 +55,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <summary>
         /// Список слов-столбцов на замену
         /// </summary>
-        private readonly List<string> rightWords = new List<string>()
+        private readonly List<string> _rightWords = new List<string>()
         {
             "LineType",
             "TotalizerOnStart",
@@ -65,18 +65,19 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <summary>
         /// Список "дополнительных" аргументов скрипта
         /// </summary>
-        private readonly List<string> additionalWords = new List<string>()
+        private readonly List<string> _additionalWords = new List<string>()
         {
             "ProofCalculationType",
             "ProofAverageOverVolumesRatio",
             "ServerAcceptingUtcTime",
+            "ExternalId",
             "ControllerId",
         };
 
         /// <summary>
         /// Формат столбцов, нуждающихся в специальном формате записи даты
         /// </summary>
-        private readonly List<string> specialFormat = new List<string>()
+        private readonly List<string> _specialFormat = new List<string>()
         {
             "StartTimestamp",
             "FinishTimestamp",
@@ -130,7 +131,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <returns></returns>
         public string AddAgrospotSessionTest(string inputData, string vehicleNum)
         {
-            this.vehicleNumber = vehicleNum;
+            this._vehicleNumber = vehicleNum;
             return GenerateFinalScript(GetFilteredDictionary(ParsePrimaryData(inputData)));
         }
 
@@ -146,7 +147,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
             IEnumerable<KeyValuePair<string, string>> primaryResults = results.PprimaryResults;
             Dictionary<string, string> filteredResults = new();
 
-            foreach (var item in keyWords)
+            foreach (var item in _keyWords)
             {
                 // Ищем совпадения ключевых слов в созданном словаре
                 var key = headers.Find(s => s.Contains(item));
@@ -179,11 +180,11 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
             var searchedItemKey = searchedItem.First().Key;
             //Смотрим все слова для замены (одни и теже поля агроспота и АСКП называются по разному)
             //Меняем, если нашли
-            for (int i = 0; i < wordsToChange.Count; i++)
+            for (int i = 0; i < _wordsToChange.Count; i++)
             {
-                if (searchedItemKey.Contains(wordsToChange[i]))
+                if (searchedItemKey.Contains(_wordsToChange[i]))
                 {
-                    var trueKey = rightWords[i];
+                    var trueKey = _rightWords[i];
                     IEnumerable<KeyValuePair<string, string>> dictionaryItem = new List<KeyValuePair<string, string>>();
                     return new ScriptCoreElement()
                     {
@@ -195,9 +196,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
             }
             // SQL любит читать даты в кавычках
             // Поэтому меняем значения для элементов с ключём-названием даты
-            for (int i = 0; i < specialFormat.Count; i++)
+            for (int i = 0; i < _specialFormat.Count; i++)
             {
-                if (searchedItemKey.Contains(specialFormat[i]))
+                if (searchedItemKey.Contains(_specialFormat[i]))
                 {
                     return new ScriptCoreElement()
                     {
@@ -223,13 +224,27 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         {
             Dictionary<string, string> redundantWords = new();
             // Добавляем дополнительные фильтры
-            foreach (var item in additionalWords)
+            foreach (var item in _additionalWords)
             {
-                // Возвращаем подзапрос для ControllerId
-                if (item.Equals(additionalWords.Last()))
+                // Чтобы не было пустого времени принятия сервером
+                if (item.Equals(_additionalWords[2]))
                 {
-                    redundantWords.Add(additionalWords.Last(),
-                        $"(SELECT Id FROM AskpDB.dbo.Controller WHERE VehicleIdentificationNumber LIKE '%{vehicleNumber}%' AND IsDeleted = 0)");
+                    redundantWords.Add(_additionalWords[2],
+                        $"\'{DateTime.UtcNow}\'");
+                    continue;
+                }
+                // Чтобы не было нуллевых ReplyId!
+                if (item.Equals(_additionalWords[3]))
+                {
+                    redundantWords.Add(_additionalWords[3],
+                        "NEWID()");
+                    continue;
+                }
+                // Возвращаем подзапрос для ControllerId
+                if (item.Equals(_additionalWords.Last()))
+                {
+                    redundantWords.Add(_additionalWords.Last(),
+                        $"(SELECT Id FROM AskpDB.dbo.Controller WHERE VehicleIdentificationNumber LIKE '%{_vehicleNumber}%' AND IsDeleted = 0)");
                     break;
                 }
                 redundantWords.Add(item, "0");

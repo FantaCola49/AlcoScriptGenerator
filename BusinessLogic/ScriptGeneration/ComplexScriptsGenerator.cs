@@ -16,9 +16,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         {
             return ScriptDto.SelectedScript.ScriptId switch
             {
-                ScriptId.ZavodSessionsMinMaxDate => ZavodSessionsMinMaxDate(startDate, endDate),
-                ScriptId.ZavodDailies => ZavodDailies(startDate, endDate),
-                ScriptId.ZavodDiscreteFullRemastered => ZavodDiscreteFullRemastered(startDate, endDate)
+                ScriptId.ZavodDiscreteFullRemastered => ZavodDiscreteFullRemastered(startDate, endDate),
+                ScriptId.ZavodSessionsMinMaxDate     => ZavodSessionsMinMaxDate(startDate, endDate),
+                ScriptId.ZavodDailies                => ZavodDailies(startDate, endDate),
 
             };
         }

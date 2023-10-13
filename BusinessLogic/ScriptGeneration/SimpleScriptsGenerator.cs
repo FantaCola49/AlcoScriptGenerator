@@ -33,11 +33,11 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <returns></returns>
         private string AgrospotScript(Script script)
         {
-            var type = script.Id;
+            var type = script.ScriptId;
             string res = type switch
             {
-                1 => AgrospotSessionDisplay(),
-                2 => AgrospotDailiesAndTickets(),
+                ScriptId.DailiesAndReplyId => AgrospotDailiesAndTickets(),
+                ScriptId.AgrospotSessions  => AgrospotSessionDisplay(),
                 _ => string.Empty,
             };
             return res;
@@ -50,11 +50,11 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <returns></returns>
         private string ZavodScript(Script script)
         {
-            var type = script.Id;
+            var type = script.ScriptId;
             string res = type switch
             {
-                2 => ZavodLineProductAdjustmentWithNames(),
-                5 => ZavodFlowmeterNamesByLines(),
+                ScriptId.ZavodLineProductAdjustmentWithProductsNames => ZavodLineProductAdjustmentWithNames(),
+                ScriptId.ZavodFlowmeteresByLines => ZavodFlowmeterNamesByLines(),
                 _ => string.Empty,
             };
             return res;
@@ -67,11 +67,11 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <returns></returns>
         private string AskpScript(Script script)
         {
-            var type = script.Id;
+            var type = script.ScriptId;
             string res = type switch
             {
-                6 => AskpDriverProductsWithProve(),
-                7 => AskpAllDriverSessionWithProductsAndProve(),
+                ScriptId.AskpAllProductsWithProofByOrganization            => AskpAllDriverSessionWithProductsAndProve(),
+                ScriptId.AskpAllSessionsAndProductsWithProof               => AskpDriverProductsWithProve(),
                 _ => string.Empty,
             };
             return res;

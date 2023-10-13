@@ -45,6 +45,18 @@
     {
 
         #region Agrospot
+
+        /// <summary>
+        /// (Агроспот) Сессии агроспот
+        /// </summary>
+        AgrospotSessions = 11,
+
+        /// <summary>
+        /// (Агроспот) Суточные+ReplyId
+        /// </summary>
+        DailiesAndReplyId = 12,
+
+
         /// <summary>
         /// (Агроспот) Удаление GPS навигации
         /// </summary>
@@ -57,6 +69,11 @@
         #endregion
 
         #region Zavod
+
+        /// <summary>
+        /// Настройки по линиям с именами продуктов
+        /// </summary>
+        ZavodLineProductAdjustmentWithProductsNames = 22,
 
         /// <summary>
         /// (Zavod) Сессии завода
@@ -106,6 +123,16 @@
         /// (ASKP) Добавить сессию агроспота в АСКП
         /// </summary>
         AskpAddAgrospotSession = 35,
+
+        /// <summary>
+        /// Скрипт выгрузки всех сессий продуктов перевозчиков и их крепости
+        /// </summary>
+        AskpAllSessionsAndProductsWithProof = 36,
+
+        /// <summary>
+        /// Скрипт выгрузки продукта по коду перевозчиков и их крепости
+        /// </summary>
+        AskpAllProductsWithProofByOrganization = 37,
 
         /// <summary>
         /// (ASKP) Суточные файлы по организации

@@ -6,6 +6,8 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 {
     public class ComplexScriptsGenerator : AddAgrospotSessionToAskpScript, IComplexScriptsGenerator
     {
+        #region Script Generators
+
         /// <summary>
         /// Сгенерировать скрипт для завода в зависимости от выбранного элемента
         /// </summary>
@@ -19,9 +21,90 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
                 ScriptId.ZavodDiscreteFullRemastered => ZavodDiscreteFullRemastered(startDate, endDate),
                 ScriptId.ZavodSessionsMinMaxDate     => ZavodSessionsMinMaxDate(startDate, endDate),
                 ScriptId.ZavodDailies                => ZavodDailies(startDate, endDate),
+                _ => String.Empty,
 
             };
         }
+        /// <summary>
+        /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="inputData">Номер ТС иди название компании</param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForAskp(string inputData)
+        {
+            return ScriptDto.SelectedScript.ScriptId switch
+            {
+                ScriptId.AskpSearchControllerByItsNumber => GetControllerByItsNumber(inputData),
+                ScriptId.AskpDailyFilesByOrganization    => GetDailiesByOrganization(inputData),
+                _ => String.Empty,
+            };
+        }
+        /// <summary>
+        /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="inputData">Сессия</param>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForAskp(string inputData, string vehicleNumber)
+        {
+            return ScriptDto.SelectedScript.ScriptId switch
+            {
+                ScriptId.AskpAddAgrospotSession => AddAgrospotSession(inputData, vehicleNumber),
+                _ => String.Empty,
+            };
+        }
+
+        /// <summary>
+        /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <param name="startDate">Дата начала</param>
+        /// <param name="endDate">Дата окончания</param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForAskp(string vehicleNumber, DateTime? startDate, DateTime? endDate)
+        {
+            return ScriptDto.SelectedScript.ScriptId switch
+            {
+                ScriptId.AskpVehicleGpsPointDataControllerAndOrganization => GetControllerGpsPointData(startDate, endDate, vehicleNumber),
+                ScriptId.AskpVehicleSessions                              => GetControllerSessions(startDate, endDate, vehicleNumber),
+                ScriptId.AskpVehicleEvents                                => GetControllerEventHistory(startDate, endDate, vehicleNumber),
+                _ => String.Empty,
+            };
+        }
+
+        /// <summary>
+        /// Сгенерировать скрипт для Агроспота в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <param name="startDate">Дата начала</param>
+        /// <param name="endDate">Дата окончания</param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForAgrospot(DateTime? startDate, DateTime? endDate, string vehicleNumber)
+        {
+            return ScriptDto.SelectedScript.ScriptId switch
+            {
+                ScriptId.GpsNavigationSearch => GpsNavigationSearch(startDate, endDate, vehicleNumber),
+                _ => String.Empty,
+            };
+        }
+
+        /// <summary>
+        /// Сгенерировать скрипт для Агроспота в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <param name="startDate">Дата начала</param>
+        /// <param name="endDate">Дата окончания</param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForAgrospot(string gpsName)
+        {
+            return ScriptDto.SelectedScript.ScriptId switch
+            {
+                ScriptId.DeleteGpsNavigation => DeleteGpsNavigation(gpsName),
+                _ => String.Empty,
+            };
+        }
+
+        #endregion
 
 
         #region Agrospot
@@ -30,7 +113,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// </summary>
         /// <param name="gpsName"></param>
         /// <returns></returns>
-        public string DeleteGpsNavigation(string gpsName)
+        private string DeleteGpsNavigation(string gpsName)
         {
             if (!gpsName.Contains(".UTM") ||
                 !gpsName.Contains("."))
@@ -56,7 +139,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <param name="endDate">Конец</param>
         /// <param name="vehicleNumber">Номер ТС</param>
         /// <returns></returns>
-        public string GpsNavigationSearch(DateTime? startDate, DateTime? endDate, string vehicleNumber)
+        private string GpsNavigationSearch(DateTime? startDate, DateTime? endDate, string vehicleNumber)
             =>
             @$" --****Скрипт выгрузки пятиминуток****--
                 DECLARE @StartDate DATE;
@@ -198,8 +281,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// Контроллер по его номеру
         /// </summary>
         /// <param name="vehicleNumber"></param>
+        /// <remarks>ASKP</remarks>
         /// <returns></returns>
-        public string GetControllerByItsNumber(string vehicleNumber)
+        private string GetControllerByItsNumber(string vehicleNumber)
             => $@"/****** Скрипт для команды SelectTopNRows из среды SSMS  ******/
                 SELECT TOP 1000 [Id]
                       ,[OrganizationId]
@@ -228,8 +312,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="vehicleNumber"></param>
+        /// <remarks>ASKP</remarks>
         /// <returns></returns>
-        public string GetControllerSessions(DateTime? startDate, DateTime? endDate, string vehicleNumber)
+        private string GetControllerSessions(DateTime? startDate, DateTime? endDate, string vehicleNumber)
             => $@"/****** Скрипт для команды SelectTopNRows из среды SSMS  ******/
                 SELECT TOP 1000 s. [Id]
                       ,[ControllerId]
@@ -278,8 +363,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="vehicleNumber"></param>
+        /// <remarks>ASKP</remarks>
         /// <returns></returns>
-        public string GetControllerEventHistory(DateTime? startDate, DateTime? endDate, string vehicleNumber)
+        private string GetControllerEventHistory(DateTime? startDate, DateTime? endDate, string vehicleNumber)
             =>
             $@"/****** Скрипт для выборки событий по ТС  ******/
             SELECT eh.[Id]
@@ -304,8 +390,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="vehicleNumber"></param>
+        /// <remarks>ASKP</remarks>
         /// <returns></returns>
-        public string GetControllerGpsPointData(DateTime? startDate, DateTime? endDate, string vehicleNumber)
+        private string GetControllerGpsPointData(DateTime? startDate, DateTime? endDate, string vehicleNumber)
             => $@"DECLARE @StartDate DATE;
                  DECLARE @EndDate DATE;
                  DECLARE @VehicleNumber VARCHAR;
@@ -355,12 +442,13 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// Добавление сессии агроспота
         /// </summary>
         /// <param name="inputData"></param>
+        /// <remarks>ASKP</remarks>
         /// <returns></returns>
-        public string AddAgrospotSession(string inputData, string vehicleNum)
+        private new string AddAgrospotSession(string inputData, string vehicleNum)
         {
             try
             {
-                return base.AddAgrospotSessionTest(inputData, vehicleNum);
+                return base.AddAgrospotSession(inputData, vehicleNum);
             }
             catch (Exception ex)
             {
@@ -372,8 +460,9 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         /// Суточные контроллеров по названию орагнизации
         /// </summary>
         /// <param name="organizationName"></param>
+        /// <remarks>ASKP</remarks>
         /// <returns></returns>
-        public string GetDailiesByOrganization(string organizationName)
+        private string GetDailiesByOrganization(string organizationName)
             => $@"/****** Скрипт для получения мониторинга суточных файлов в АСКП по организации  ******/
                 SELECT df.[Id]
 	                  ,c.VehicleIdentificationNumber

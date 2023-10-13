@@ -7,13 +7,14 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 {
     /*
      * Сверхмассивный кусок кода запрещённый на Земле и Луне
-     * Обернул в отдельный класс чтобы изолировать
+     * Обернул в отдельный класс чтобы изолировать логику
      */
     /// <summary>
     /// Генерирует SQL скрипт для добавления сесси АСКП на основе сессии Агроспота
     /// </summary>
     public class AddAgrospotSessionToAskpScript
     {
+        #region Fields
         /// <summary>
         /// Номер ТС
         /// </summary>
@@ -83,6 +84,20 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
             "FinishTimestamp",
         };
 
+        #endregion
+
+        /// <summary>
+        /// Генерирует SQL скрипт для добавления сесси АСКП на основе сессии 
+        /// </summary>
+        /// <param name="inputData"></param>
+        /// <returns></returns>
+        public string AddAgrospotSession(string inputData, string vehicleNum)
+        {
+            this._vehicleNumber = vehicleNum;
+            return GenerateFinalScript(GetFilteredDictionary(ParsePrimaryData(inputData)));
+        }
+
+        #region Private methods
         /// <summary>
         /// ДТО для распарсенных заголовков и значений
         /// </summary>
@@ -122,17 +137,6 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         {
             public HeadersValuesDTO HeadersValuesDTO { get; set; }
             public IEnumerable<KeyValuePair<string, string>> PprimaryResults { get; set; }
-        }
-
-        /// <summary>
-        /// Генерирует SQL скрипт для добавления сесси АСКП на основе сессии 
-        /// </summary>
-        /// <param name="inputData"></param>
-        /// <returns></returns>
-        public string AddAgrospotSessionTest(string inputData, string vehicleNum)
-        {
-            this._vehicleNumber = vehicleNum;
-            return GenerateFinalScript(GetFilteredDictionary(ParsePrimaryData(inputData)));
         }
 
         /// <summary>
@@ -315,6 +319,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
                 };
             }
         }
+
         /// <summary>
         /// Получить предварительный (неотфильтрованный) список всех элементов и значений предоставленной сессии
         /// </summary>
@@ -335,5 +340,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 
             return primaryResults;
         }
+
+        #endregion
     }
 }

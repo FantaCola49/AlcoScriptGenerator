@@ -7,22 +7,7 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
     /// </summary>
     interface IComplexScriptsGenerator
     {
-        /// <summary>
-        /// Удаление gps навигации
-        /// </summary>
-        /// <param name="gpsName"></param>
-        /// <returns></returns>
-        public string DeleteGpsNavigation(string gpsName);
-
-        /// <summary>
-        /// Поиск и выгрузка gps навигации
-        /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="vehicleNumber"></param>
-        /// <returns></returns>
-        public string GpsNavigationSearch(DateTime? startDate, DateTime? endDate, string vehicleNumber);
-
+        #region Script Generators
         /// <summary>
         /// Сгенерировать скрипт для завода в зависимости от выбранного элемента
         /// </summary>
@@ -31,52 +16,54 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// <returns></returns>
         public string GenerateComplexScriptForZavod(DateTime? startDate, DateTime? endDate);
 
+        #region Askp Generators
         /// <summary>
-        /// Контроллер по его номеру
+        /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
         /// </summary>
-        /// <param name="vehicleNumber"></param>
+        /// <param name="inputData">Номер ТС иди название компании</param>
         /// <returns></returns>
-        public string GetControllerByItsNumber(string vehicleNumber);
+        public string GenerateComplexScriptForAskp(string inputData);
 
         /// <summary>
-        /// Сессии контроллера по его номеру за определённый период
+        /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="vehicleNumber"></param>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <param name="startDate">Дата начала</param>
+        /// <param name="endDate">Дата окончания</param>
         /// <returns></returns>
-        public string GetControllerSessions(DateTime? startDate, DateTime? endDate, string vehicleNumber);
+        public string GenerateComplexScriptForAskp(string vehicleNumber, DateTime? startDate, DateTime? endDate);
 
         /// <summary>
-        /// История контроллера
+        /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="vehicleNumber"></param>
+        /// <param name="inputData">Сессия</param>
+        /// <param name="vehicleNumber">Номер ТС</param>
         /// <returns></returns>
-        public string GetControllerEventHistory(DateTime? startDate, DateTime? endDate, string vehicleNumber);
+        public string GenerateComplexScriptForAskp(string inputData, string vehicleNumber);
+        #endregion
+
+        #region Agrospot Generators
 
         /// <summary>
-        /// Получить Gps координаты с характеристиками уровнемеров
+        /// Сгенерировать скрипт для Агроспота в зависимости от выбранного элемента
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="vehicleNumber"></param>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <param name="startDate">Дата начала</param>
+        /// <param name="endDate">Дата окончания</param>
         /// <returns></returns>
-        public string GetControllerGpsPointData(DateTime? startDate, DateTime? endDate, string vehicleNumber);
+        public string GenerateComplexScriptForAgrospot(DateTime? startDate, DateTime? endDate, string vehicleNumber);
 
         /// <summary>
-        /// Суточные контроллеров по названию орагнизации
+        /// Сгенерировать скрипт для Агроспота в зависимости от выбранного элемента
         /// </summary>
-        /// <param name="organizationName"></param>
+        /// <param name="vehicleNumber">Номер ТС</param>
+        /// <param name="startDate">Дата начала</param>
+        /// <param name="endDate">Дата окончания</param>
         /// <returns></returns>
-        public string GetDailiesByOrganization(string organizationName);
+        public string GenerateComplexScriptForAgrospot(string gpsName);
 
-        /// <summary>
-        /// Добавление сессии агроспота
-        /// </summary>
-        /// <param name="inputData"></param>
-        /// <returns></returns>
-        public string AddAgrospotSession(string inputData, string vehicleNum);
+        #endregion
+
+        #endregion
     }
 }

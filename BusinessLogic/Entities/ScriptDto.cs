@@ -6,7 +6,7 @@
     public static class ScriptDto
     {
         /// <summary>
-        /// Непосредственно скрипт
+        /// Непосредственно скрипт (его тело)
         /// </summary>
         public static string ScriptBody { get; private set; }
 

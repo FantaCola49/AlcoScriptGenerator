@@ -21,8 +21,8 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             scripts = type switch
             {
                 ScriptField.Agrospot_Related => _agrospotScripts,
-                ScriptField.Zavod_Related => _zavodScripts,
-                ScriptField.ASKP_Related => _askpScripts,
+                ScriptField.Zavod_Related    => _zavodScripts,
+                ScriptField.ASKP_Related     => _askpScripts,
             };
             if (scripts.Count.Equals(0))
                 return null;
@@ -32,25 +32,27 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
         #region Private Members
 
+        // В будущем убрать Id!
+
         private List<ScriptRelation> _scriptTypes = new List<ScriptRelation>()
         {
             new ScriptRelation
             {
                 Title = "Агроспот",
                 Description = "Комплексы Агроспот. GPS, ReplyId",
-                Id = 1,
+                //Id = 1,
                 ScriptField = ScriptField.Agrospot_Related,
             },
             new ScriptRelation
             {
-                Id = 2,
+                //Id = 2,
                 Title = "Заводы",
                 Description = "Комплексы АСИИУ Алкоспот, установленные на заводах. Дискреты, продукты и т.д.",
                 ScriptField = ScriptField.Zavod_Related,
             },
             new ScriptRelation
             {
-                Id = 2,
+                //Id = 2,
                 Title = "Аскп",
                 Description = "Напрямую связана с сайтом АСКП. История контроллеров, продукты контроллеров, добавление сессии Агроспотов",
                 ScriptField = ScriptField.ASKP_Related,
@@ -60,22 +62,22 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         private List<Script> _agrospotScripts = new List<Script>()
         {
             // ID ОЧЕНЬ важны, по ним определяем, на какую страницу переходим
-            #region Agrospot
+            // Пизжу, их надо удалить
             new Script
             {
-                Id = 1,
                 Title = "Сессии агроспот",
                 Description = "Выгрузка сессий агроспота",
                 СontainsArguments = false,
                 TypeOfScript = ScriptType.Agrospot,
+                ScriptId = ScriptId.AgrospotSessions,
             },
             new Script
             {
-                Id = 2,
                 Title = "Суточные+ReplyId",
                 Description = "Выгрузка суточных, и их ReplyId (Тикеты)",
                 СontainsArguments = false,
                 TypeOfScript = ScriptType.Agrospot,
+                ScriptId = ScriptId.DailiesAndReplyId,
             },
             new Script
             {
@@ -94,7 +96,6 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 TypeOfScript = ScriptType.Agrospot,
                 ScriptId = ScriptId.GpsNavigationSearch,
             },
-            #endregion
         };
 
         // Скрипты АСКП
@@ -107,7 +108,11 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 СontainsArguments = true,
                 TypeOfScript = ScriptType.ASKP,
                 ScriptId = ScriptId.AskpAddAgrospotSession,
-                
+            },
+
+            new Script
+            {
+                Title = ""
             },
         };
 
@@ -125,11 +130,11 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
             new Script
             {
-                Id = 2,
                 Title = "НастройкиПоЛиниям",
                 Description = "Настройки по линиям для продуктов",
                 СontainsArguments = false,
                 TypeOfScript = ScriptType.Zavod,
+                ScriptId = ScriptId.ZavodLineProductAdjustmentWithProductsNames,
             },
 
             new Script
@@ -152,11 +157,11 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
             new Script
             {
-                Id = 5,
                 Title = "РасходомерыПоЛиниям",
                 Description = "Названия расходомеров, прикреплённых к линиям",
                 СontainsArguments = false,
                 TypeOfScript = ScriptType.Zavod,
+                ScriptId = ScriptId.ZavodFlowmeteresByLines
             },
         };
         #endregion

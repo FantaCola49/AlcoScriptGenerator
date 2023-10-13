@@ -1,44 +1,39 @@
-﻿using AlcoScriptGenerator.BusinessLogic.ScriptGeneration;
-using AlcoScriptGenerator.BusinessLogic.Entities;
+﻿using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
-using System.Windows;
+using AlcoScriptGenerator.BusinessLogic.ScriptGeneration;
 using System.Windows.Controls;
 
 namespace AlcoScriptGenerator.Pages.Askp
 {
     /// <summary>
-    /// Interaction logic for AgrospotSessionAddition.xaml
+    /// Interaction logic for VehicleNumberPage.xaml
     /// </summary>
-    public partial class AgrospotSessionAddition : Page, IBaseFrameLogic
+    public partial class VehicleNumberPage : Page, IBaseFrameLogic
     {
         /// <summary>
         /// Генератор скриптов
         /// </summary>
         IComplexScriptsGenerator _gen;
-
-        public AgrospotSessionAddition()
+        public VehicleNumberPage()
         {
             InitializeComponent();
             _gen = new ComplexScriptsGenerator();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ScriptDto.SetNewScript(GenerateScript());
-        }
-
         /// <summary>
         /// Генерируем скрипт
         /// </summary>
         /// <returns></returns>
         public string GenerateScript()
         {
-            if (!string.IsNullOrEmpty(RawSessionInputTB.Text) ||
-                !string.IsNullOrEmpty(VehicleNumberTB.Text))
-                return _gen.GenerateComplexScriptForAskp(RawSessionInputTB.Text, VehicleNumberTB.Text);
+            if (string.IsNullOrEmpty(VehicleNumberTB.Text))
+                return InputValidation.NotEnoughArgs;
 
-            else
-                return InputValidation.UnreconizableArgs;
+            if (ScriptDto.SelectedScript.TypeOfScript.Equals(ScriptType.Agrospot))
+                return _gen.GenerateComplexScriptForAgrospot(VehicleNumberTB.Text);
+            else if (ScriptDto.SelectedScript.TypeOfScript.Equals(ScriptType.ASKP))
+                return _gen.GenerateComplexScriptForAskp(VehicleNumberTB.Text);
+
+            return string.Empty;
         }
 
         private void VehicleNumberTB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)

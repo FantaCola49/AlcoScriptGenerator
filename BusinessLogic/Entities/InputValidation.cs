@@ -13,6 +13,11 @@ namespace AlcoScriptGenerator.BusinessLogic.Entities
         public static readonly Regex DigitalFilter = new Regex(@"\d");
 
         /// <summary>
+        /// Разрешение на ввод буквы/слов
+        /// </summary>
+        public static readonly Regex WordFilter = new Regex(@"\w");
+
+        /// <summary>
         /// Заполнены не все аргументы
         /// </summary>
         public static readonly string NotEnoughArgs = "Скрипт не сгенерирован!\n" +

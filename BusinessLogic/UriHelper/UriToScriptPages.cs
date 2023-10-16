@@ -8,22 +8,13 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
     /// </summary>
     public class UriToScriptPages
     {
-        /// <summary>
-        /// ПАПКА ZАВОДОВ
-        /// </summary>
-        private readonly ScriptType z = ScriptType.Zavod;
-        /// <summary>
-        /// ПАПКА АСКП
-        /// </summary>
-        private readonly ScriptType As = ScriptType.ASKP;
-        
         private Uri PagePathFactory(string pageName, ScriptType type)
         {
             string folder = type switch
             {
                 ScriptType.Agrospot => "Agrospot",
-                ScriptType.Zavod => "Zavod",
-                ScriptType.ASKP => "ASKP",
+                ScriptType.Zavod    => "Zavod",
+                ScriptType.ASKP     => "ASKP",
             };
 
             return new Uri($"Pages/{folder}/{pageName}", UriKind.Relative);
@@ -35,26 +26,28 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
         }
 
         #region Agrospot
-        private protected Uri ToGpsNavigationSearchPage() => PagePathFactory("VehicleNumberMinMaxDate.xaml", ScriptType.Agrospot);
-        private protected Uri ToDeleteGpsNavigationPage() => PagePathFactory("DeleteGpsNavigation.xaml", ScriptType.Agrospot);
+        private protected Uri ToVehicleNumberMinMaxDatePage => PagePathFactory("VehicleNumberMinMaxDate.xaml", ScriptType.Agrospot);
+        private protected Uri ToDeleteGpsNavigationPage => PagePathFactory("DeleteGpsNavigation.xaml", ScriptType.Agrospot);
 
         #endregion
 
 
         #region Zavod
-        private protected Uri ToMinMaxDatePage() => PagePathFactory("MinMaxDatePage.xaml", ScriptType.Zavod);
+        private protected Uri ToMinMaxDatePage => PagePathFactory("MinMaxDatePage.xaml", ScriptType.Zavod);
 
         #endregion
 
 
         #region ASKP
-        private protected Uri ToAgrospotSessionAdditionPage() => PagePathFactory("AgrospotSessionAddition.xaml", ScriptType.ASKP);
+        private protected Uri ToAgrospotSessionAdditionPage => PagePathFactory("AgrospotSessionAddition.xaml", ScriptType.ASKP);
 
-        private protected Uri ToAskpVehicleNumberPage() => PagePathFactory("VehicleNumberPage.xaml", ScriptType.ASKP);
+        private protected Uri ToAskpVehicleNumberPage => PagePathFactory("VehicleNumberPage.xaml", ScriptType.ASKP);
+
+        private protected Uri ToAskpOrganizationNamePage => PagePathFactory("OrganizationNamePage.xaml", ScriptType.ASKP);
         #endregion
 
         #region Other
-        private protected Uri ToBlancPage() => PagePathFactory("BlancPage.xaml");
+        private protected Uri ToBlancPage => PagePathFactory("BlancPage.xaml");
         #endregion
     }
 }

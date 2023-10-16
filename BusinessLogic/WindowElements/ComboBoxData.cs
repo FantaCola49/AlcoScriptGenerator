@@ -101,6 +101,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         // Скрипты АСКП
         private List<Script> _askpScripts = new List<Script>()
         {
+            // 5
             new Script
             {
                 Title = "AddAgrospotSession",
@@ -109,11 +110,69 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 TypeOfScript = ScriptType.ASKP,
                 ScriptId = ScriptId.AskpAddAgrospotSession,
             },
-
+            // 1
             new Script
             {
-                Title = ""
+                Title = "FindController",
+                Description = "Поиск контроллера по его номеру",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpSearchControllerByItsNumber,
             },
+            // 2
+            new Script
+            {
+                Title = "ВыгрузкаСессий",
+                Description = "Выгрузка сессий с указанием номера ТС",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpSearchControllerByItsNumber,
+            },
+            // 3
+            new Script
+            {
+                Title = "История событий",
+                Description = "Выгрузка истории событий контроллера",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpVehicleEvents,
+            },
+            // 4
+            new Script
+            {
+                Title = "GpsPoint+Controller",
+                Description = "Выгрузка данных о пятиминутках контроллера организации",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpVehicleGpsPointDataControllerAndOrganization,
+            },
+            // 6
+            new Script
+            {
+                Title = "ВсеСессииПродутовПеревозчиков",
+                Description = "Выгрузка всех сессий по всем продуктам перевозчиков с добавлением их крепости", 
+                СontainsArguments = false,
+                TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpAllSessionsAndProductsWithProof,
+            },
+            //7
+            new Script
+            {
+                Title = "ВсеПродуктыОрганизации",
+                Description = "Выгрузка всех продуктов компаний-перевозчиков с указанием крепости",
+                СontainsArguments = false,
+                TypeOfScript = ScriptType.ASKP,
+                ScriptId = ScriptId.AskpAllProductsWithProofByOrganization,
+            },
+            // 8
+            new Script
+            {
+                Title = "СуточныеФайлыОрганизации",
+                Description = "Выгрузка суточных файлов по коду организации",
+                TypeOfScript = ScriptType.ASKP,
+                СontainsArguments = true,
+                ScriptId = ScriptId.AskpDailyFilesByOrganization,
+            }
         };
 
         // Скрипты Заводов

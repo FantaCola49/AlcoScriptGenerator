@@ -105,7 +105,7 @@
         AskpSearchControllerByItsNumber = 31,
 
         /// <summary>
-        /// (ASKP) Выгрузка сессии с указанием
+        /// (ASKP) Выгрузка сессии с указанием номера ТС
         /// </summary>
         AskpVehicleSessions = 32,
 

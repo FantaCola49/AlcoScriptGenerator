@@ -33,8 +33,9 @@ namespace AlcoScriptGenerator.Pages.Agrospot
         {
             if (string.IsNullOrEmpty(gpsName))
                 return InputValidation.NotEnoughArgs;
-
-            return _gen.DeleteGpsNavigation(gpsName);
+            
+            // Скрипт исключительно для агроспотов, так что минуем проверки...
+            return _gen.GenerateComplexScriptForAgrospot(gpsName);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             // Эсли у нас нет аргументов, то отображаем пустоту нахрен
             if (item == null ||
                 item.СontainsArguments.Equals(false))
-                return ToBlancPage();
+                return ToBlancPage;
 
             var type = item.TypeOfScript;
 
@@ -27,7 +27,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 ScriptType.Agrospot => ReturnAgrospotRelatedUri(item),
                 ScriptType.Zavod    => ReturnZavodRelatedUri(item),
                 ScriptType.ASKP     => ReturnAskpRelatedUri(item),
-                _ => ToBlancPage(),
+                _ => ToBlancPage,
             };
 
             return uri;
@@ -42,9 +42,9 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             Uri uri = item.ScriptId switch
             {
-                ScriptId.DeleteGpsNavigation => ToDeleteGpsNavigationPage(),
-                ScriptId.GpsNavigationSearch => ToGpsNavigationSearchPage(),
-                _ => ToBlancPage(),
+                ScriptId.DeleteGpsNavigation => ToDeleteGpsNavigationPage,
+                ScriptId.GpsNavigationSearch => ToVehicleNumberMinMaxDatePage,
+                _ => ToBlancPage,
             };
             return uri;
         }
@@ -58,10 +58,10 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             Uri uri = item.ScriptId switch
             {
-                ScriptId.ZavodSessionsMinMaxDate     => ToMinMaxDatePage(),
-                ScriptId.ZavodDiscreteFullRemastered => ToMinMaxDatePage(),
-                ScriptId.ZavodDailies                => ToMinMaxDatePage(),
-                _ => ToBlancPage(),
+                ScriptId.ZavodSessionsMinMaxDate     => ToMinMaxDatePage,
+                ScriptId.ZavodDiscreteFullRemastered => ToMinMaxDatePage,
+                ScriptId.ZavodDailies                => ToMinMaxDatePage,
+                _ => ToBlancPage,
             };
             return uri;
         }
@@ -75,8 +75,13 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         {
             Uri uri = item.ScriptId switch
             {
-                ScriptId.AskpAddAgrospotSession => ToAgrospotSessionAdditionPage(),
-                _ => ToBlancPage(),
+                ScriptId.AskpSearchControllerByItsNumber                  => ToAskpVehicleNumberPage,       //1
+                ScriptId.AskpVehicleSessions                              => ToVehicleNumberMinMaxDatePage, //2
+                ScriptId.AskpVehicleEvents                                => ToVehicleNumberMinMaxDatePage, //3
+                ScriptId.AskpVehicleGpsPointDataControllerAndOrganization => ToVehicleNumberMinMaxDatePage, //4
+                ScriptId.AskpAddAgrospotSession                           => ToAgrospotSessionAdditionPage, //5
+                ScriptId.AskpDailyFilesByOrganization                     => ToAskpOrganizationNamePage,    //8
+                _ => ToBlancPage,
             };
             return uri;
         }

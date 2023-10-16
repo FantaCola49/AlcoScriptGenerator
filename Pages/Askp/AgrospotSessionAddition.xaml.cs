@@ -22,6 +22,11 @@ namespace AlcoScriptGenerator.Pages.Askp
             _gen = new ComplexScriptsGenerator();
         }
 
+        /// <summary>
+        /// Кнопочка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ScriptDto.SetNewScript(GenerateScript());
@@ -41,9 +46,15 @@ namespace AlcoScriptGenerator.Pages.Askp
                 return InputValidation.UnreconizableArgs;
         }
 
+        /// <summary>
+        /// Чтобы нельзя было вводить ничего с клавиатуры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VehicleNumberTB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            if (InputValidation.DigitalFilter.IsMatch(e.Text))
+            if (InputValidation.DigitalFilter.IsMatch(e.Text) ||
+                InputValidation.WordFilter.IsMatch(e.Text))
                 e.Handled = false;
             else
                 e.Handled = true;

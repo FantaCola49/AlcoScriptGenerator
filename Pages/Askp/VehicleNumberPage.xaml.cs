@@ -36,12 +36,27 @@ namespace AlcoScriptGenerator.Pages.Askp
             return string.Empty;
         }
 
+        /// <summary>
+        /// Вводим только циферки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VehicleNumberTB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             if (InputValidation.DigitalFilter.IsMatch(e.Text))
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        /// <summary>
+        /// Кнопка ежжи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ScriptDto.SetNewScript(GenerateScript());
         }
     }
 }

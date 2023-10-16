@@ -9,6 +9,8 @@ namespace AlcoScriptGenerator.Pages
     {
         public BlancPage()
         {
+            // NOTHING IS HERE!
+            // Просто заглушка
         }
     }
 }

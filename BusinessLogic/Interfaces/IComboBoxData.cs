@@ -18,6 +18,13 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// <summary>
         /// Вернёт список скриптов в зависимости от типа
         /// </summary>
-        public List<Script> GetScriptsByType(ScriptField type);
+        public List<Script> GetScriptsByType(ScriptType type);
+
+        /// <summary>
+        /// Получить описание и название выбранного типа скрипта
+        /// </summary>
+        /// <param name="scr"></param>
+        /// <returns></returns>
+        public BaseEntity GetScriptRelationDescriptionAndTitleByType(Script scr);
     }
 }

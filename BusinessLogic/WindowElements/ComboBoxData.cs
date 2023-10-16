@@ -1,6 +1,7 @@
 ﻿using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 {
@@ -13,16 +14,32 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         public List<ScriptRelation> GetScriptTypes() => _scriptTypes;
 
         /// <summary>
+        /// Получить описание и название выбранного типа скрипта
+        /// </summary>
+        /// <param name="scr"></param>
+        /// <returns></returns>
+        public BaseEntity GetScriptRelationDescriptionAndTitleByType(Script scr)
+        {
+            BaseEntity entity = scr.TypeOfScript switch
+            {
+                ScriptType.Agrospot => new BaseEntity { Title = GetScriptTypes().First().Title, Description = GetScriptTypes().First().Description },
+                ScriptType.Zavod    => new BaseEntity { Title = GetScriptTypes()[1].Title,      Description = GetScriptTypes()[1].Description      },
+                ScriptType.ASKP     => new BaseEntity { Title = GetScriptTypes().Last().Title,  Description = GetScriptTypes().Last().Description  },
+                _ => new BaseEntity { Title = "Выберите скрипт", Description = null},
+            };
+            return entity;
+        }
+
+        /// <summary>
         /// Подготовит выпадающий список скриптов для агроспотов
         /// </summary>
-        public List<Script> GetScriptsByType(ScriptField type)
+        public List<Script> GetScriptsByType(ScriptType type)
         {
-            List<Script> scripts = new();
-            scripts = type switch
+            List<Script> scripts = type switch
             {
-                ScriptField.Agrospot_Related => _agrospotScripts,
-                ScriptField.Zavod_Related    => _zavodScripts,
-                ScriptField.ASKP_Related     => _askpScripts,
+                ScriptType.Agrospot => _agrospotScripts,
+                ScriptType.Zavod    => _zavodScripts,
+                ScriptType.ASKP     => _askpScripts,
             };
             if (scripts.Count.Equals(0))
                 return null;
@@ -32,30 +49,25 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
         #region Private Members
 
-        // В будущем убрать Id!
-
         private List<ScriptRelation> _scriptTypes = new List<ScriptRelation>()
         {
             new ScriptRelation
             {
                 Title = "Агроспот",
                 Description = "Комплексы Агроспот. GPS, ReplyId",
-                //Id = 1,
-                ScriptField = ScriptField.Agrospot_Related,
+                ScriptField = ScriptType.Agrospot,
             },
             new ScriptRelation
             {
-                //Id = 2,
                 Title = "Заводы",
                 Description = "Комплексы АСИИУ Алкоспот, установленные на заводах. Дискреты, продукты и т.д.",
-                ScriptField = ScriptField.Zavod_Related,
+                ScriptField = ScriptType.Zavod,
             },
             new ScriptRelation
             {
-                //Id = 2,
                 Title = "Аскп",
                 Description = "Напрямую связана с сайтом АСКП. История контроллеров, продукты контроллеров, добавление сессии Агроспотов",
-                ScriptField = ScriptField.ASKP_Related,
+                ScriptField = ScriptType.ASKP,
             },
         };
 

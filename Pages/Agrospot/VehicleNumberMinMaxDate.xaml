@@ -21,9 +21,9 @@
             <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.ColumnSpan="1" Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" Text="Номер ТС" Grid.Row="0"/>
-        <TextBlock Grid.ColumnSpan="1" Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" Text="С какого числа" Grid.Row="1"/>
-        <TextBlock Grid.ColumnSpan="1" Style="{DynamicResource ExampleTextBlock}" TextWrapping="Wrap" Text="По какое число" Grid.Row="2"/>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Content="Номер ТС" Grid.ColumnSpan="1" Grid.Row="0"/>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Content="С какого числа" Grid.Row="1" Grid.ColumnSpan="1"/>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Content="По какое число" Grid.Row="2" Grid.ColumnSpan="1"/>
 
         <Grid Grid.Column="2" Grid.ColumnSpan="2"  Background="Transparent">
             <Grid.ColumnDefinitions>

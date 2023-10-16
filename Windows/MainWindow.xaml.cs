@@ -43,8 +43,7 @@ namespace AlcoScriptGenerator
             // Заполняем ниспадающий список типов скриптов
             FillTypeScriptsComboBox();
             // Заполняем ниспадающий список скриптов
-            FillScriptsComboBox(ScriptField.Agrospot_Related);
-
+            FillScriptsComboBox(ScriptType.Agrospot);
         }
 
         /// <summary>
@@ -54,10 +53,7 @@ namespace AlcoScriptGenerator
         /// <param name="e"></param>
         private void QScriptType_Click(object sender, RoutedEventArgs e)
         {
-            if (ScriptDto.SelectedScript is null)
-                _btn.QScriptType(null, null);
-            else
-                _btn.QScriptType(ScriptDto.SelectedScript.Title, ScriptDto.SelectedScript.Description);
+            _btn.QScriptType();
         }
 
         /// <summary>
@@ -68,9 +64,9 @@ namespace AlcoScriptGenerator
         private void QScriptName_Click(object sender, RoutedEventArgs e)
         {
             if (ScriptDto.SelectedScript is null)
-                _btn.QScriptType(null, null);
+                _btn.QScript(null, null);
             else
-                _btn.QScriptType(ScriptDto.SelectedScript.Title, ScriptDto.SelectedScript.Description);
+                _btn.QScript(ScriptDto.SelectedScript.Title, ScriptDto.SelectedScript.Description);
         }
 
         /// <summary>
@@ -101,14 +97,15 @@ namespace AlcoScriptGenerator
         /// <param name="e"></param>
         private void ScriptTypeCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = (ScriptRelation)ScriptTypeCB.SelectedItem;
+            ScriptRelation item = (ScriptRelation)ScriptTypeCB.SelectedItem;
+            ScriptRelationDto.SelectedScriptRelation = item;
             FillScriptsComboBox(item.ScriptField);
         }
 
         /// <summary>
         /// Подготовит выпадающий список скриптов для агроспотов
         /// </summary>
-        private void FillScriptsComboBox(ScriptField type)
+        private void FillScriptsComboBox(ScriptType type)
         {
             var scripts = _data.GetScriptsByType(type);
             ScriptNameCB.ItemsSource = scripts;

@@ -1,4 +1,5 @@
-﻿using AlcoScriptGenerator.BusinessLogic.Interfaces;
+﻿using AlcoScriptGenerator.BusinessLogic.Entities;
+using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Windows;
 
@@ -7,17 +8,6 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
     public class ButtonsLogic : IButtonsLogic
     {
         #region Interface Implementation
-        /// <summary>
-        /// Пояснение к Типу Скрипта
-        /// </summary>
-        public void QScriptType(string title, string desc)
-        {
-            var item = CheckInput(title, desc);
-            title = item.Item1 as string;
-            desc = item.Item2 as string;
-            MessageBox.Show($"{title} - {desc}",
-                "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
 
         /// <summary>
         /// Пояснение для скрипта
@@ -30,6 +20,17 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             desc = item.Item2 as string;
             // объяснение для каждого скрипта
             MessageBox.Show($"{title} - {desc}",
+                "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        /// <summary>
+        /// Пояснение для типа скрипта
+        /// </summary>
+        /// <param name="scriptNum"></param>
+        public void QScriptType()
+        {
+            // объяснение для каждого скрипта
+            MessageBox.Show($"{ScriptRelationDto.SelectedScriptRelation.Title} - {ScriptRelationDto.SelectedScriptRelation.Description}",
                 "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -49,7 +50,6 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             }
         }
 
-        //TODO:Генерировать скрипт
 
         //TODO:Экспорт скрипта btn
         #endregion

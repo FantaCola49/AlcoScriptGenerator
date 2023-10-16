@@ -1,6 +1,7 @@
 ﻿using AlcoScriptGenerator.BusinessLogic.Entities;
 using AlcoScriptGenerator.BusinessLogic.Interfaces;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System.IO;
 using System.Windows;
 
 namespace AlcoScriptGenerator.BusinessLogic.WindowElements
@@ -50,8 +51,27 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             }
         }
 
+        /// <summary>
+        /// Экспортировать скрипт в выбранную папку
+        /// </summary>
+        /// <param name="filePath"></param>
+        public bool ExportScript(string filePath)
+        {
+            if (ScriptDto.SelectedScript == null ||
+                string.IsNullOrEmpty(ScriptDto.SelectedScript.Title) ||
+                string.IsNullOrEmpty(ScriptDto.ScriptBody))
+                return false;
 
-        //TODO:Экспорт скрипта btn
+            string fileName = @$"{ScriptDto.SelectedScript.Title}.sql";
+            string path = Path.Combine(filePath, fileName);
+
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                sw.WriteLine($@"{ScriptDto.ScriptBody}");
+            }
+            return true;
+        }
+
         #endregion
 
         /// <summary>
@@ -70,6 +90,16 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 return (title, desc);
             }
             return (title, desc);
+        }
+
+        /// <summary>
+        /// Проверка уже существующего файла
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private bool IsAlreadyExistingFile(string filePath)
+        {
+            return File.Exists(filePath);
         }
     }
 }

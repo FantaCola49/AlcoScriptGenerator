@@ -156,5 +156,39 @@ namespace AlcoScriptGenerator
 
             DisplayScript();
         }
+
+        /// <summary>
+        /// Изменили путь до экспорта файла SQL
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FilePathTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(FilePathTB.Text))
+                ExportBtn.IsEnabled = false;
+            else
+                ExportBtn.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// Кнопка экспорта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(FilePathTB.Text))
+            {
+                if (_btn.ExportScript(FilePathTB.Text))
+                    MessageBox.Show("Скрипт успешно скопирован в выбранную папку!\n" +
+                                    "Ваш скрипт добавлен к старому, если файл уже существовал",
+                                    "УСПЕХ", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                    MessageBox.Show("Не удалось сохранить скрипт!\n" +
+                                    "Выберите и сгенерируйте тело скрипта, прежде чем сохранять!", "ВНИМАНИЕ!",
+                                    MessageBoxButton.OK, MessageBoxImage.Hand);
+
+            }
+        }
     }
 }

@@ -22,5 +22,11 @@
         /// </summary>
         /// <remarks>Позволяет выбрать путь к папке с файлами</remarks>
         string BrowseFolderPath();
+
+        /// <summary>
+        /// Экспортировать скрипт в выбранную папку
+        /// </summary>
+        /// <param name="FilePath"></param>
+        bool ExportScript(string FilePath);
     }
 }

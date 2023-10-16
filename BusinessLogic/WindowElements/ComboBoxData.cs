@@ -49,6 +49,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
 
         #region Private Members
 
+        // Типы скриптов (их прикладная область)
         private List<ScriptRelation> _scriptTypes = new List<ScriptRelation>()
         {
             new ScriptRelation
@@ -71,6 +72,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
             },
         };
 
+        // Скрипты Агроспотов
         private List<Script> _agrospotScripts = new List<Script>()
         {
             // ID ОЧЕНЬ важны, по ним определяем, на какую страницу переходим

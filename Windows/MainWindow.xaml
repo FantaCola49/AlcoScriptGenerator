@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AlcoScriptGenerator" 
         Height="520" Width="1000" ResizeMode="CanResize"
-        MinHeight="520" MinWidth="800"
+        MinHeight="600" MinWidth="1200"
         MaxHeight="1080" MaxWidth="1920">
 
     <Grid>
@@ -91,9 +91,9 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="0.1*"/>
                 </Grid.RowDefinitions>
-                <TextBox x:Name="FilePathTB" TextAlignment="Justify" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"/>
+                <TextBox x:Name="FilePathTB" TextAlignment="Justify" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" TextChanged="FilePathTB_TextChanged"/>
                 <Button Content="Обзор..." Grid.Row="1" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="ChooseFolderPath_Click" />
-                <Button Content="Экспорт" Grid.Row="1"  Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False"/>
+                <Button Name="ExportBtn" Content="Экспорт" Grid.Row="1"  Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False" Click="ExportBtn_Click"/>
             </Grid>
         </GroupBox>
     </Grid>

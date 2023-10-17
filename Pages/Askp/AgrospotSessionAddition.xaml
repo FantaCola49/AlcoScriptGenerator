@@ -60,7 +60,7 @@
                    Grid.ColumnSpan="2" FontSize="30" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="Введите содержание сессии агроспота с указанием наименования столбцов"/>
 
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="1" FontSize="30" Content="Номер агроспота"/>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="1" FontSize="27" Content="Номер агроспота"/>
 
     </Grid>
 </Page>

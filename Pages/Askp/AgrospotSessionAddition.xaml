@@ -16,7 +16,6 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
             <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
@@ -35,7 +34,7 @@
             </Grid.RowDefinitions>
             <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="GO!" Click="Button_Click"/>
         </Grid>
-        <Grid Grid.Row="3" Grid.ColumnSpan="2" Background="Transparent">
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.02*"/>
                 <ColumnDefinition/>
@@ -51,14 +50,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.7*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <TextBox Grid.Column="1" Grid.Row="1" Name="VehicleNumberTB" PreviewTextInput="VehicleNumberTB_PreviewTextInput"/>
         </Grid>
 
         <TextBlock TextWrapping="WrapWithOverflow" Foreground="White"
-                   Grid.ColumnSpan="2" FontSize="30" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                   Grid.ColumnSpan="2" FontSize="30" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="Введите содержание сессии агроспота с указанием наименования столбцов"/>
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="1" FontSize="30" Content="Номер агроспота"/>

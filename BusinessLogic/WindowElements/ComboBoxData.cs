@@ -75,8 +75,6 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
         // Скрипты Агроспотов
         private List<Script> _agrospotScripts = new List<Script>()
         {
-            // ID ОЧЕНЬ важны, по ним определяем, на какую страницу переходим
-            // Пизжу, их надо удалить
             new Script
             {
                 Title = "Сессии агроспот",

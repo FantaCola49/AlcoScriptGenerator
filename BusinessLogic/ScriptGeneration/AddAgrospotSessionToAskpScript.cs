@@ -12,7 +12,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
     /// <summary>
     /// Генерирует SQL скрипт для добавления сесси АСКП на основе сессии Агроспота
     /// </summary>
-    public class AddAgrospotSessionToAskpScript
+    public class AddAgrospotSessionToAskpScript : InputDataParser
     {
         #region Fields
         /// <summary>
@@ -98,46 +98,6 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         }
 
         #region Private methods
-        /// <summary>
-        /// ДТО для распарсенных заголовков и значений
-        /// </summary>
-        private class HeadersValuesDTO
-        {
-            /// <summary>
-            /// Заголовки
-            /// </summary>
-            public List<string> Headers { get; init; }
-
-            /// <summary>
-            /// Значения
-            /// </summary>
-            public List<string> Values { get; init; }
-        }
-
-        /// <summary>
-        /// ДТО для передачи данных о кор-элементе скрипта
-        /// </summary>
-        private class ScriptCoreElement
-        {
-            /// <summary>
-            /// Ключ (Название столбца)
-            /// </summary>
-            public string Key { get; set; }
-
-            /// <summary>
-            /// Значение
-            /// </summary>
-            public string Value { get; set; }
-        }
-
-        /// <summary>
-        /// ДТО распознанных данных сессии
-        /// </summary>
-        private class PrimaryData
-        {
-            public HeadersValuesDTO HeadersValuesDTO { get; set; }
-            public IEnumerable<KeyValuePair<string, string>> PprimaryResults { get; set; }
-        }
 
         /// <summary>
         /// Метод для выборки нужных значений из предварительных
@@ -189,7 +149,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
                 if (searchedItemKey.Contains(_wordsToChange[i]))
                 {
                     var trueKey = _rightWords[i];
-                    IEnumerable<KeyValuePair<string, string>> dictionaryItem = new List<KeyValuePair<string, string>>();
+                    //IEnumerable<KeyValuePair<string, string>> dictionaryItem = new List<KeyValuePair<string, string>>();
                     return new ScriptCoreElement()
                     {
                         Key = trueKey,
@@ -290,57 +250,6 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
             }
             return result;
         }
-
-        /// <summary>
-        /// Распарсит строку заголовков и строку значений
-        /// </summary>
-        /// <param name="inputData"></param>
-        /// <returns></returns>
-        private PrimaryData ParsePrimaryData(string inputData)
-        {
-            using (var reader = new StringReader(inputData))
-            {
-                string headersString = reader.ReadLine();
-                string valuesString = reader.ReadLine();
-
-                List<string> headersList = headersString.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                List<string> valuesList = valuesString.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-                HeadersValuesDTO dto = new HeadersValuesDTO
-                {
-                    Headers = headersList,
-                    Values = valuesList,
-                };
-
-                return new PrimaryData
-                {
-                    HeadersValuesDTO = dto,
-                    PprimaryResults = GetPrimaryResults(dto)
-                };
-            }
-        }
-
-        /// <summary>
-        /// Получить предварительный (неотфильтрованный) список всех элементов и значений предоставленной сессии
-        /// </summary>
-        /// <param name="headersAndValues"></param>
-        /// <returns></returns>
-        private IEnumerable<KeyValuePair<string, string>> GetPrimaryResults(HeadersValuesDTO headersAndValues)
-        {
-            List<string> headers = headersAndValues.Headers;
-            List<string> values = headersAndValues.Values;
-
-            //Сформировали список из значений
-            Dictionary<string, string> primaryResults = new Dictionary<string, string>();
-
-            for (int i = 0; i < headers.Count; i++)
-            {
-                primaryResults.Add(headers[i], values[i]);
-            }
-
-            return primaryResults;
-        }
-
         #endregion
     }
 }

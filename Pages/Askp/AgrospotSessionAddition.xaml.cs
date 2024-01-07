@@ -38,10 +38,16 @@ namespace AlcoScriptGenerator.Pages.Askp
         /// <returns></returns>
         public string GenerateScript()
         {
-            if (!string.IsNullOrEmpty(RawSessionInputTB.Text) ||
+            if (ScriptDto.SelectedScript.ScriptId.Equals(ScriptId.AskpAddAgrospotSession))
+            {
+                if (!string.IsNullOrEmpty(RawSessionInputTB.Text) ||
                 !string.IsNullOrEmpty(VehicleNumberTB.Text))
-                return _gen.GenerateComplexScriptForAskp(RawSessionInputTB.Text, VehicleNumberTB.Text);
+                    return _gen.GenerateComplexScriptForAskp(RawSessionInputTB.Text, VehicleNumberTB.Text);
+                else return InputValidation.UnreconizableArgs;
+            }
 
+            else if (ScriptDto.SelectedScript.ScriptId.Equals(ScriptId.ZavodUzProducts))
+                return _gen.GenerateComplexScriptForZavod(RawSessionInputTB.Text);
             else
                 return InputValidation.UnreconizableArgs;
         }

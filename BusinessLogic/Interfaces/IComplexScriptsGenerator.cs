@@ -16,6 +16,14 @@ namespace AlcoScriptGenerator.BusinessLogic.Interfaces
         /// <returns></returns>
         public string GenerateComplexScriptForZavod(DateTime? startDate, DateTime? endDate);
 
+        /// <summary>
+        /// Сгенерировать скрипт для завода в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForZavod(string inputData);
+
         #region Askp Generators
         /// <summary>
         /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента

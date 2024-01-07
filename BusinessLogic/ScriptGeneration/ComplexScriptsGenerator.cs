@@ -6,6 +6,12 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 {
     public class ComplexScriptsGenerator : AddAgrospotSessionToAskpScript, IComplexScriptsGenerator
     {
+        private UzbekistanProducts uz;
+        public ComplexScriptsGenerator() 
+        {
+            uz = new UzbekistanProducts();
+        }
+
         #region Script Generators
 
         /// <summary>
@@ -25,6 +31,20 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
 
             };
         }
+        /// <summary>
+        /// Сгенерировать скрипт для завода в зависимости от выбранного элемента
+        /// </summary>
+        /// <param name="inputData"></param>
+        /// <returns></returns>
+        public string GenerateComplexScriptForZavod(string inputData)
+        {
+            return ScriptDto.SelectedScript.ScriptId switch
+            {
+                ScriptId.ZavodUzProducts => uz.AddUzbekistanProduct(inputData),
+                _ => String.Empty,
+            };
+        }
+
         /// <summary>
         /// Сгенерировать скрипт для АСКП в зависимости от выбранного элемента
         /// </summary>

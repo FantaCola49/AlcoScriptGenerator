@@ -234,6 +234,15 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 TypeOfScript = ScriptType.Zavod,
                 ScriptId = ScriptId.ZavodFlowmeteresByLines
             },
+
+            new Script
+            {
+                Title = "UzProduct",
+                Description = "Добавить дохуя продуктов",
+                СontainsArguments = true,
+                TypeOfScript = ScriptType.Zavod,
+                ScriptId = ScriptId.ZavodUzProducts
+            }
         };
         #endregion
     }

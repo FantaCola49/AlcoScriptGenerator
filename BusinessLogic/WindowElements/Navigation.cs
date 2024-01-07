@@ -61,6 +61,7 @@ namespace AlcoScriptGenerator.BusinessLogic.WindowElements
                 ScriptId.ZavodSessionsMinMaxDate     => ToMinMaxDatePage,
                 ScriptId.ZavodDiscreteFullRemastered => ToMinMaxDatePage,
                 ScriptId.ZavodDailies                => ToMinMaxDatePage,
+                ScriptId.ZavodUzProducts =>ToAgrospotSessionAdditionPage,
                 _ => ToBlancPage,
             };
             return uri;

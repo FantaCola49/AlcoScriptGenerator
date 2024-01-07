@@ -95,6 +95,11 @@
         /// </summary>
         ZavodFlowmeteresByLines = 25,
 
+        /// <summary>
+        /// (Zavod) Добавить продукты
+        /// </summary>
+        ZavodUzProducts = 260,
+
         #endregion
 
         #region ASKP

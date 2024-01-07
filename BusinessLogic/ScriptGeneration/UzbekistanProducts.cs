@@ -10,11 +10,11 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
     {
         #region Fields
 
-        string Headers = "Title\tProductCode\tProductCodeType\tVolumeBoxing\tSpecificationProof" +
+        string Headers = "Title\tProductCode\tSixDigitCode\tVolumeBoxing\tSpecificationProof" +
             //"\tAgencyId" +
             "\tMinTemperature\tMaxTemperature\tMinProof\tMaxProof\tStartGravityInPlato\tCustomDensity20\tFileUrl\tIsDeleted\tEnableProofAsInSpecification\tEnableFitToSpecificProof\tFitToSpecificProofFluctuationPercent\tEnableCustomDensity20\tPackageType\tDensityMultiplayer\tRawVolumeMultiplayer\tMassMultiplayer" +
-            "\tSixDigitCode" +
-            "\tThreeDigitCode";
+            "\tThreeDigitCode" +
+            "\tProductCodeType";
         bool continueRead = false;
         int linesRead = 0;
         string RESULT = string.Empty;
@@ -24,7 +24,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
         {
             string start = "\t-50.00\t60.00";
             string mid = $"\t{(t-0.1).ChangeSymbolInDouble()}\t{(t+0.1).ChangeSymbolInDouble()}";
-            string rest = "\tNULL\t0.806238\t" + @"'C:\Products\10_253856789_15.txt'" + "\t0\t0\t0\t0.00100000\t0\t0\t1.00000000\t1.00000000\t1.00000000\t200\t200";
+            string rest = "\tNULL\t0.806238\t" + @"'C:\Products\10_253856789_15.txt'" + "\t0\t0\t0\t0.00100000\t0\t0\t1.00000000\t1.00000000\t1.00000000\t200\t10";
             return start+mid+rest;
         }
         public string AddUzbekistanProduct(string inputData)

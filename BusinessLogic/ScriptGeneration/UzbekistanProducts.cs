@@ -68,7 +68,7 @@ namespace AlcoScriptGenerator.BusinessLogic.ScriptGeneration
                 else if (valuesString.Contains("\t35")) valuesString += AdditionalValues35;
                 */
                 var list = (valuesString.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries).ToList());
-                valuesString += GetMinMaxTemperatureString(list[list.Count - 2].DoubleParseAdvanced());
+                valuesString += GetMinMaxTemperatureString(list[4].DoubleParseAdvanced());
 
                 List<string> headersList = Headers.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 List<string> valuesList = valuesString.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries).ToList();

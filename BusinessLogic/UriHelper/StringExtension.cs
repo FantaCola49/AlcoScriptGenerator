@@ -40,7 +40,7 @@ namespace AlcoScriptGenerator.BusinessLogic.UriHelper
 
         public static string ChangeSymbolInDouble(this double Double)
         {
-            var reminder = (Math.Round(Double - Math.Floor(Double),2) * 100) % 100;
+            var reminder = (Math.Round(Double - Math.Floor(Double),2) * 100);
 
             int Floor = (int)Math.Floor(Double);
             string res = $"{Floor}.{reminder}";
